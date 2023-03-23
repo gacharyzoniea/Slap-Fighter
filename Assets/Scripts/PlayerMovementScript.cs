@@ -52,7 +52,7 @@ public class PlayerMovementScript : MonoBehaviour
             newVelocity.x = Mathf.Lerp(currentVelocity.x, _movement.x, acceleration * Time.fixedDeltaTime);
         }
 
-        _characterController.Move(_movement * _speed);
+        _characterController.Move(newVelocity * _speed);
         _characterController.Move(_gravity);
     }
 
