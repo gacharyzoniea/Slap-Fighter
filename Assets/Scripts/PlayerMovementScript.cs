@@ -22,7 +22,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private float _groundLinearDrag = 2.65f;
     [SerializeField] private float _airLinearDrag = 1f;
     [SerializeField] private float maxSpeed = 10;
-    [SerializeField] private float jumpSpeed = 9f;
+    [SerializeField] private float jumpHeight = 10;
     [SerializeField] float gravity = 10f;
 
     [Header("GroundCheck")]
@@ -63,7 +63,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveCharacter();
+        
+        rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y - gravity);
         if (isGrounded)
         {
             ApplyGroundLinearDrag();
@@ -79,11 +80,11 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Update()
     {
+        MoveCharacter();
         verticalDirection = rbody.velocity.y;
         _currentMovement = rbody.velocity;
         //check if grounded
         isGrounded = Physics.SphereCast(transform.position, sphereCastRadius, Vector3.down, out RaycastHit hitInfo, sphereCastDistance, groundLayer);
-        print(isGrounded);
 
         //set movement vector w/ input system
         _movement = _move.ReadValue<Vector2>();
@@ -94,25 +95,20 @@ public class PlayerMovementScript : MonoBehaviour
             Jump();
         }
 
-        //clamp max speed to avoid infinite acceleration
-        //if(rbody.velocity.x > maxSpeed)
-        //{
-        //    rbody.velocity = Vector3.ClampMagnitude(rbody.velocity, maxSpeed);
-        //}
-
-        rbody.AddForce(Vector3.down * gravity);
+        rbody.AddForce(Vector3.down * gravity * Time.deltaTime);
     }
     private void MoveCharacter()
     {
-        rbody.AddForce(_movement * _speed, ForceMode.VelocityChange);
-        if (Mathf.Abs(rbody.velocity.x) > maxSpeed)
-            rbody.velocity = new Vector2(Mathf.Sign(rbody.velocity.x) * maxSpeed, rbody.velocity.y);
-        
+        rbody.AddForce(_movement * _speed * Time.deltaTime, ForceMode.Impulse);
+        Vector3 velocityH = new Vector3(rbody.velocity.x, 0, rbody.velocity.z);
+        Vector3 velocityV = new Vector3(0, rbody.velocity.y, 0);
+        rbody.velocity = Vector3.ClampMagnitude(velocityH, maxSpeed) + velocityV;
     }
 
     private void Jump()
     {
-        rbody.velocity = Vector3.up * jumpSpeed;
+      Vector3 jumpVector = new Vector3(0, jumpHeight, 0);
+        rbody.AddForce(jumpVector * Time.deltaTime, ForceMode.Impulse);
     }
 
     private void ApplyGroundLinearDrag()

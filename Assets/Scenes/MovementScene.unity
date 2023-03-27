@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 784505291}
   - component: {fileID: 784505290}
   - component: {fileID: 784505289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,6 +407,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1498035825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8600801440794128806, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+  m_PrefabInstance: {fileID: 8600801441205651660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1498035826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498035825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753c404d8ca44024b8af70f2a8f7da6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundDrag: 10
+  castArea: {x: 2.86, y: 0.78, z: 2}
+  sphereCastDistance: 2.78
+  jumpForce: 5
+  airMultiplier: 10
+  gravity: -10
 --- !u!1 &1908852642
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,5 +576,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8600801440794128806, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600801440794128828, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: jumpSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600801440794128828, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600801440794128828, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: jumpHeight
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600801440794128829, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600801440794128829, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8600801440794128828, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
