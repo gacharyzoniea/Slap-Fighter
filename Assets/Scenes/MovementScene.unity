@@ -431,9 +431,9 @@ MonoBehaviour:
   groundDrag: 10
   castArea: {x: 2.86, y: 0.78, z: 2}
   sphereCastDistance: 2.78
-  jumpForce: 5
-  airMultiplier: 10
-  gravity: -10
+  jumpForce: 60
+  airMultiplier: 0.42
+  gravity: -75.6
 --- !u!1 &1908852642
 GameObject:
   m_ObjectHideFlags: 0

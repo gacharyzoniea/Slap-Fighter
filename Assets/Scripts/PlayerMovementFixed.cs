@@ -22,6 +22,7 @@ public class PlayerMovementFixed : MonoBehaviour
     public float airMultiplier;
     public float gravity = -10f;
     Vector3 fall;
+    bool canDouble;
 
 
     private InputAction _move;
@@ -56,15 +57,29 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void Update()
     {
+        if (isGrounded)
+        {
+            canDouble = true;
+        }
         //basic movement
         _movement = _move.ReadValue<Vector2>();
         movePlayer();
         SpeedControl();
 
+
         //jump
-        if (_jump.triggered && isGrounded)
+        if (_jump.triggered)
         {
-            Jump();
+            if(isGrounded)
+            {
+                Jump();
+            }
+            else if (canDouble)
+            {
+                canDouble = false;
+                Jump();
+            }
+            
         }
 
             //grounded check and drag
@@ -78,8 +93,12 @@ public class PlayerMovementFixed : MonoBehaviour
             rbody.drag = 0;
         }
 
+        if (isGrounded && fall.y < 0)
+        {
+            fall.y = -100f;
+        }
         fall.y += gravity * Time.deltaTime;
-        rbody.AddForce(fall * Time.deltaTime);
+        rbody.AddForce(fall * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     private void movePlayer()
@@ -100,7 +119,7 @@ public class PlayerMovementFixed : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rbody.velocity.x, 0f, 0f);
 
-        if(flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rbody.velocity = new Vector3(limitedVel.x, rbody.velocity.y, limitedVel.z);
@@ -109,6 +128,10 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void Jump()
     {
+        if (canDouble)
+        {
+            canDouble = false;
+        }
         rbody.velocity = new Vector3(rbody.velocity.x, 0f, rbody.velocity.z);
 
         rbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
