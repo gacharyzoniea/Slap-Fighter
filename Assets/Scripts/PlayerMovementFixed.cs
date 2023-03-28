@@ -9,10 +9,11 @@ public class PlayerMovementFixed : MonoBehaviour
     public float moveSpeed;
     Vector3 _movement;
     Vector3 _movementDirection;
+    public bool _isDashing;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
-    private bool isGrounded;
+    public bool isGrounded;
     public float groundDrag = 5f;
     [SerializeField] private Vector3 castArea = new Vector3(0, 0, 0);
     [SerializeField] private float sphereCastDistance = .2f;
@@ -33,6 +34,7 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void Awake()
     {
+        _isDashing = false;
         playerMovement = new SlapFighter();
     }
 
@@ -68,8 +70,10 @@ public class PlayerMovementFixed : MonoBehaviour
         }
         //basic movement
         _movement = _move.ReadValue<Vector2>();
-        SpeedControl();
-
+        if (!_isDashing)
+        {
+            SpeedControl();
+        }
 
         //jump
         if (_jump.triggered)

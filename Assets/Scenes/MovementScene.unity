@@ -425,9 +425,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 24
+  _isDashing: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  isGrounded: 0
   groundDrag: 10
   castArea: {x: 2.86, y: 0.78, z: 2}
   sphereCastDistance: 2.78
@@ -452,8 +454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 1498035827}
-  dashForce: 300
-  dashUpForce: 0
+  dashForce: 12
+  dashUpForce: 50
   dashDuration: 0.25
   dashCd: 1.5
 --- !u!96 &1498035835

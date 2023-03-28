@@ -17,6 +17,7 @@ public class PlayerDashScript : MonoBehaviour
     public float dashForce;
     public float dashUpForce;
     public float dashDuration;
+    bool canDash = true;
 
     [Header("Cooldown")]
     public float dashCd;
@@ -50,6 +51,7 @@ public class PlayerDashScript : MonoBehaviour
         pm = GetComponent<PlayerMovementFixed>();
         tr = GetComponent<TrailRenderer>();
         tr.enabled = false;
+        canDash = true;
     }
     private void Update()
     {
@@ -61,16 +63,25 @@ public class PlayerDashScript : MonoBehaviour
     }
     private void Dash()
     {
-        Vector3 forceToApply = 
+        if (!pm._isDashing)
+        {
+            canDash = false;
+            pm._isDashing = true;
+            Vector3 forceToApply =
             new Vector3(orientation.normalized.x * dashForce, orientation.normalized.y * dashUpForce, 0f);
-        StartCoroutine(Trail());
-        rbody.AddForce(forceToApply, ForceMode.Impulse);
-        Invoke(nameof(ResetDash), dashDuration);
+            StartCoroutine(Trail());
+            rbody.AddForce(forceToApply, ForceMode.Impulse);
+            Invoke(nameof(ResetDash), dashDuration);
+        }
+        else
+        {
+            return;
+        }
     }
 
     private void ResetDash()
     {
-
+        pm._isDashing = false;
     }
     IEnumerator Trail()
     {
