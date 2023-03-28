@@ -20,7 +20,7 @@ public class PlayerMovementFixed : MonoBehaviour
     [Header("Jumping")]
     public float jumpForce;
     public float airMultiplier;
-    public float gravity = -10f;
+    public float gravity = -75f;
     Vector3 fall;
     bool canDouble;
 
@@ -55,6 +55,11 @@ public class PlayerMovementFixed : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
     }
 
+    private void FixedUpdate()
+    {
+       movePlayer(); 
+    }
+
     private void Update()
     {
         if (isGrounded)
@@ -63,7 +68,6 @@ public class PlayerMovementFixed : MonoBehaviour
         }
         //basic movement
         _movement = _move.ReadValue<Vector2>();
-        movePlayer();
         SpeedControl();
 
 
@@ -106,11 +110,11 @@ public class PlayerMovementFixed : MonoBehaviour
         _movementDirection = _movement * moveSpeed;
         if (isGrounded)
         {
-            rbody.AddForce(_movementDirection, ForceMode.Force);
+            rbody.AddForce(new Vector3(_movementDirection.x, 0, _movementDirection.z), ForceMode.Impulse);
         }
         else if(!isGrounded)
         {
-            rbody.AddForce(_movementDirection * airMultiplier, ForceMode.Force);
+            rbody.AddForce(new Vector3(_movementDirection.x, 0, _movementDirection.z) * airMultiplier, ForceMode.Force);
         }
         
     }
