@@ -59,7 +59,15 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void FixedUpdate()
     {
-       movePlayer(); 
+       movePlayer();
+        if (_movement.y < 0)
+        {
+            rbody.velocity = Vector3.ClampMagnitude(rbody.velocity, new Vector3(rbody.velocity.x, Mathf.Abs(175), rbody.velocity.z).magnitude);
+        }
+        else
+        {
+            rbody.velocity = Vector3.ClampMagnitude(rbody.velocity, new Vector3(rbody.velocity.x, Mathf.Abs(150), rbody.velocity.z).magnitude);
+        }
     }
 
     private void Update()
@@ -103,7 +111,11 @@ public class PlayerMovementFixed : MonoBehaviour
 
         if (isGrounded && fall.y < 0)
         {
-            fall.y = -100f;
+            fall.y = -75f;
+        }
+        if(fall.y < -150f)
+        {
+            fall.y = -150f;
         }
         fall.y += gravity * Time.deltaTime;
         rbody.AddForce(fall * Time.deltaTime, ForceMode.VelocityChange);
@@ -114,7 +126,15 @@ public class PlayerMovementFixed : MonoBehaviour
         _movementDirection = _movement * moveSpeed;
         if (isGrounded)
         {
-            rbody.AddForce(new Vector3(_movementDirection.x, 0, _movementDirection.z), ForceMode.Impulse);
+            if(_movementDirection.y < 0)
+            {
+                rbody.AddForce(new Vector3(_movementDirection.x, _movementDirection.y, _movementDirection.z), ForceMode.Impulse);
+            }
+            else
+            {
+                rbody.AddForce(new Vector3(_movementDirection.x, 0, _movementDirection.z), ForceMode.Impulse);
+            }
+            
         }
         else if(!isGrounded)
         {

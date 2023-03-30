@@ -17,10 +17,10 @@ public class PlayerDashScript : MonoBehaviour
     public float dashForce;
     public float dashUpForce;
     public float dashDuration;
+    private Vector3 delayedForceToApply;
     bool canDash = true;
 
     [Header("Cooldown")]
-    public float dashCd;
     private float dashCdTimer;
 
     [Header("inputStuff")]
@@ -60,23 +60,46 @@ public class PlayerDashScript : MonoBehaviour
         {
             Dash();
         }
+        if (dashCdTimer > 0)
+        {
+            dashCdTimer -= Time.deltaTime;
+        }
+        if(pm.isGrounded && dashCdTimer > .2f)
+        {
+            dashCdTimer = .1f;
+        }
     }
     private void Dash()
     {
-        if (!pm._isDashing)
+        if (!pm._isDashing && dashCdTimer <= 0)
         {
+            if (!pm.isGrounded)
+            {
+                dashCdTimer = 2f;
+            }
+            else
+            {
+                dashCdTimer = .75f;
+            }
+            StartCoroutine(Trail());
             canDash = false;
             pm._isDashing = true;
+            rbody.velocity = new Vector3(rbody.velocity.x, 0, rbody.velocity.z);
             Vector3 forceToApply =
             new Vector3(orientation.normalized.x * dashForce, orientation.normalized.y * dashUpForce, 0f);
-            StartCoroutine(Trail());
-            rbody.AddForce(forceToApply, ForceMode.Impulse);
+            delayedForceToApply = forceToApply;
+            Invoke(nameof(DelayedDashForce), .0025f);
             Invoke(nameof(ResetDash), dashDuration);
         }
         else
         {
             return;
         }
+    }
+
+    private void DelayedDashForce()
+    {
+        rbody.AddForce(delayedForceToApply, ForceMode.Impulse);
     }
 
     private void ResetDash()
@@ -86,7 +109,7 @@ public class PlayerDashScript : MonoBehaviour
     IEnumerator Trail()
     {
         tr.enabled = true;
-        yield return new WaitForSecondsRealtime(.3f);
+        yield return new WaitForSecondsRealtime(.15f);
         tr.enabled = false;
     }
 }
