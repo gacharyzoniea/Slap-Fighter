@@ -29,27 +29,38 @@ public class PlayerMovementFixed : MonoBehaviour
     private InputAction _move;
     private InputAction _jump;
     public SlapFighter playerMovement;
+    private InputActionAsset inputActions;
+    private InputActionMap player;
     Rigidbody rbody;
 
 
     private void Awake()
     {
         _isDashing = false;
-        playerMovement = new SlapFighter();
+        inputActions = this.GetComponent<PlayerInput>().actions;
+        player = inputActions.FindActionMap("Player");
+        print(inputActions);
+        print(player);
+        //playerMovement = new SlapFighter();
+        
     }
 
     private void OnEnable()
     {
-        _move = playerMovement.Player.Move;
-        _jump = playerMovement.Player.Jump;
-        _jump.Enable();
-        _move.Enable();
+        //_move = playerMovement.Player.Move;
+        //_jump = playerMovement.Player.Jump;
+        //_jump.Enable();
+        //_move.Enable();
+        _jump = player.FindAction("Jump");
+        _move = player.FindAction("Move");
+        player.Enable();
     }
 
     private void OnDisable()
     {
-        _jump.Disable();
-        _move.Disable();
+        //_jump.Disable();
+        //_move.Disable();
+        player.Enable();
     }
 
     void Start()

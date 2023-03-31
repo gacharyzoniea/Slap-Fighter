@@ -327,7 +327,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d7a45f78-0f6c-4a5b-a754-d4a2fb077e51"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

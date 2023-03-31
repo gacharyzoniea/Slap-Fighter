@@ -297,7 +297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 8600801440794128829}
-  dashForce: 12
-  dashUpForce: 50
-  dashDuration: 0.25
-  dashCd: 1.5
+  dashForce: 35
+  dashUpForce: 82
+  dashDuration: 0.12

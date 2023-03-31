@@ -24,25 +24,29 @@ public class PlayerDashScript : MonoBehaviour
     private float dashCdTimer;
 
     [Header("inputStuff")]
-    public SlapFighter playerMovement;
+    //public SlapFighter playerMovement;
     private InputAction _dash;
     private InputAction _move;
+    private InputActionAsset inputActions;
+    private InputActionMap player;
 
     private void Awake()
     {
-        playerMovement = new SlapFighter();
+        //playerMovement = new SlapFighter();
+        inputActions = this.GetComponent<PlayerInput>().actions;
+        player = inputActions.FindActionMap("Player");
+        print(inputActions);
+        print(player);
     }
     private void OnEnable()
     {
-        _move = playerMovement.Player.Move;
-        _dash = playerMovement.Player.Dash;
-        _dash.Enable();
-        _move.Enable();
+        _dash = player.FindAction("Dash");
+        _move = player.FindAction("Move");
+        player.Enable();
     }
     private void OnDisable()
     {
-        _dash.Disable();
-        _move.Disable();
+        player.Disable();
     }
 
     private void Start()
