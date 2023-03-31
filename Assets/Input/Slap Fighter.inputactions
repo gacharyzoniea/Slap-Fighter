@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Shield",
+                    "type": "Value",
+                    "id": "df985503-be53-4af8-b15f-7d6330660505",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -319,6 +327,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31beb0bf-3fcc-4043-903c-df9566f64e62",
+                    "path": "<Keyboard>/slash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5d235e8-6c7a-4e45-a90b-87947fb28619",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

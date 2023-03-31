@@ -35,8 +35,6 @@ public class PlayerDashScript : MonoBehaviour
         //playerMovement = new SlapFighter();
         inputActions = this.GetComponent<PlayerInput>().actions;
         player = inputActions.FindActionMap("Player");
-        print(inputActions);
-        print(player);
     }
     private void OnEnable()
     {

@@ -10,6 +10,7 @@ public class PlayerMovementFixed : MonoBehaviour
     Vector3 _movement;
     Vector3 _movementDirection;
     public bool _isDashing;
+    public bool _canMove = true;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
@@ -36,11 +37,10 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void Awake()
     {
+        _canMove = true;
         _isDashing = false;
         inputActions = this.GetComponent<PlayerInput>().actions;
         player = inputActions.FindActionMap("Player");
-        print(inputActions);
-        print(player);
         //playerMovement = new SlapFighter();
         
     }
@@ -70,7 +70,10 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void FixedUpdate()
     {
-       movePlayer();
+        if (_canMove)
+        {
+            movePlayer();
+        }
         if (_movement.y < 0)
         {
             rbody.velocity = Vector3.ClampMagnitude(rbody.velocity, new Vector3(rbody.velocity.x, Mathf.Abs(175), rbody.velocity.z).magnitude);
