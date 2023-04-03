@@ -9,12 +9,13 @@ public class PlayerShieldScript : MonoBehaviour
     [Header("References")]
     private PlayerMovementFixed _pm;
     public GameObject shieldObject;
+    private Vector3 shieldSize;
 
     [Header("Shield options")]
     public float shieldLength;
     private bool _isShielding;
     public float shieldMin;
-    private float cdTimer;
+    private float shieldHealth = 100;
 
 
     [Header("inputStuff")]
@@ -41,9 +42,11 @@ public class PlayerShieldScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cdTimer = 2f;
+        shieldSize = shieldObject.gameObject.transform.localScale;
         _pm = GetComponent<PlayerMovementFixed>();
         _isShielding = false;
+        StartCoroutine(addShield());
+        StartCoroutine(removeShield());
     }
 
     // Update is called once per frame
@@ -57,6 +60,8 @@ public class PlayerShieldScript : MonoBehaviour
         {
             _isShielding=false;
         }
+
+
         if (_isShielding)
         {
             Shield();
@@ -67,10 +72,8 @@ public class PlayerShieldScript : MonoBehaviour
             _pm._canMove = true;
             shieldObject.SetActive(false);
         }
-        if (cdTimer > 0)
-        {
-            cdTimer -= Time.deltaTime;
-        }
+
+        Mathf.Clamp(shieldHealth, 0, 100);
     }
 
     private void Shield()
@@ -79,13 +82,43 @@ public class PlayerShieldScript : MonoBehaviour
         shieldObject.SetActive(true);
     }
 
-    private void ShieldReset()
+    IEnumerator addShield()
     {
-        _pm._canMove = true;
-        if(cdTimer < 2)
+        while (true)
         {
-            cdTimer += Time.deltaTime;
+            if(shieldHealth < 100 && !_isShielding)
+            {
+                shieldHealth++;
+                shieldSize = new Vector3((shieldSize.x + (shieldSize.x * (shieldHealth * .0001f))),
+                    (shieldSize.y + (shieldSize.y * (shieldHealth * .0001f))),
+                    (shieldSize.z + (shieldSize.z * (shieldHealth * .0001f))));
+                shieldObject.transform.localScale = shieldSize;
+                yield return new WaitForSeconds(.1f);
+            }
+            else
+            {
+                yield return null;
+            }
+        }   
+    }
+
+    IEnumerator removeShield()
+    {
+        while (true)
+        {
+            if (shieldHealth > 0 && _isShielding)
+            {
+                shieldHealth--;
+                shieldSize = new Vector3((shieldSize.x-(shieldSize.x * (shieldHealth * .0001f))), 
+                    (shieldSize.y-(shieldSize.y * (shieldHealth * .0001f))), 
+                    (shieldSize.z-(shieldSize.z * (shieldHealth * .0001f))));
+                shieldObject.transform.localScale = shieldSize;
+                yield return new WaitForSeconds(.1f);
+            }
+            else
+            {
+                yield return null;
+            }
         }
-        
     }
 }

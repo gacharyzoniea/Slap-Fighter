@@ -26,12 +26,13 @@ public class PlayerMovementFixed : MonoBehaviour
     Vector3 fall;
     bool canDouble;
 
-
+    [Header("Other")]
     private InputAction _move;
     private InputAction _jump;
     public SlapFighter playerMovement;
     private InputActionAsset inputActions;
     private InputActionMap player;
+    public Transform playerTransform;
     Rigidbody rbody;
 
 
@@ -133,6 +134,15 @@ public class PlayerMovementFixed : MonoBehaviour
         }
         fall.y += gravity * Time.deltaTime;
         rbody.AddForce(fall * Time.deltaTime, ForceMode.VelocityChange);
+
+        if(rbody.velocity.x >= 0)
+        {
+            playerTransform.eulerAngles = new Vector3(0, 90, 0);
+        }
+        else
+        {
+            playerTransform.eulerAngles = new Vector3(0, -90, 0);
+        }
     }
 
     private void movePlayer()
