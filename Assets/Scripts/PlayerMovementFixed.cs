@@ -26,6 +26,10 @@ public class PlayerMovementFixed : MonoBehaviour
     Vector3 fall;
     bool canDouble;
 
+    [Header("Animation")]
+    public Animator animator;
+    [SerializeField] GameObject animatedObject;
+
     [Header("Other")]
     private InputAction _move;
     private InputAction _jump;
@@ -38,6 +42,7 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void Awake()
     {
+        animator = animatedObject.GetComponent<Animator>();
         _canMove = true;
         _isDashing = false;
         inputActions = this.GetComponent<PlayerInput>().actions;
@@ -74,6 +79,7 @@ public class PlayerMovementFixed : MonoBehaviour
         if (_canMove)
         {
             movePlayer();
+            animator.SetFloat("Move", _move.ReadValue<Vector2>().x); 
         }
         if (_movement.y < 0)
         {
@@ -164,7 +170,6 @@ public class PlayerMovementFixed : MonoBehaviour
         {
             rbody.AddForce(new Vector3(_movementDirection.x, 0, _movementDirection.z) * airMultiplier, ForceMode.Force);
         }
-        
     }
 
     private void SpeedControl()

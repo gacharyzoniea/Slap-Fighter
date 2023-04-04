@@ -55,10 +55,12 @@ public class PlayerShieldScript : MonoBehaviour
         if(_shield.ReadValue<float>() > 0 && _pm.isGrounded)
         {
             _isShielding = true;
+            _pm.animator.SetBool("Blocking", true);
         }
         else
         {
             _isShielding=false;
+            _pm.animator.SetBool("Blocking", false);
         }
 
 
