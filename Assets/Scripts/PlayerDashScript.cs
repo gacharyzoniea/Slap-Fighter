@@ -18,7 +18,7 @@ public class PlayerDashScript : MonoBehaviour
     public float dashUpForce;
     public float dashDuration;
     private Vector3 delayedForceToApply;
-    bool canDash = true;
+    public bool canDash = true;
 
     [Header("Cooldown")]
     private float dashCdTimer;
@@ -53,7 +53,6 @@ public class PlayerDashScript : MonoBehaviour
         pm = GetComponent<PlayerMovementFixed>();
         tr = GetComponent<TrailRenderer>();
         tr.enabled = false;
-        canDash = true;
     }
     private void Update()
     {
@@ -73,7 +72,7 @@ public class PlayerDashScript : MonoBehaviour
     }
     private void Dash()
     {
-        if (!pm._isDashing && dashCdTimer <= 0)
+        if (!pm._isDashing && dashCdTimer <= 0 && canDash)
         {
             if (!pm.isGrounded)
             {
@@ -84,7 +83,6 @@ public class PlayerDashScript : MonoBehaviour
                 dashCdTimer = .75f;
             }
             StartCoroutine(Trail());
-            canDash = false;
             pm._isDashing = true;
             rbody.velocity = new Vector3(rbody.velocity.x, 0, rbody.velocity.z);
             Vector3 forceToApply =

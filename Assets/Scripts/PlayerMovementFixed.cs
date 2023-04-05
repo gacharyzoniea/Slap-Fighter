@@ -11,6 +11,8 @@ public class PlayerMovementFixed : MonoBehaviour
     Vector3 _movementDirection;
     public bool _isDashing;
     public bool _canMove = true;
+    public bool _canMoveLag = true;
+    public bool _canJump = true;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
@@ -76,7 +78,7 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_canMove)
+        if (_canMove && _canMoveLag)
         {
             movePlayer();
             animator.SetFloat("Move", _move.ReadValue<Vector2>().x); 
@@ -105,7 +107,7 @@ public class PlayerMovementFixed : MonoBehaviour
         }
 
         //jump
-        if (_jump.triggered)
+        if (_jump.triggered && _canJump)
         {
             if(isGrounded)
             {

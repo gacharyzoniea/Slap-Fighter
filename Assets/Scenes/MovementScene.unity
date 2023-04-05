@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &115314516 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132148964174655, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  m_PrefabInstance: {fileID: 8600801441205651660}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &248314516
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,18 +685,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1498035826, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-      propertyPath: animatedObject
-      value: 
-      objectReference: {fileID: 115314516}
-    - target: {fileID: 1498035826, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-      propertyPath: sphereCastDistance
-      value: 2.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866666021031193599, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4144557daebab26419978a19b9213fce, type: 2}
     - target: {fileID: 8600801440794128802, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -753,14 +736,6 @@ PrefabInstance:
     - target: {fileID: 8600801440794128806, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8600801440794128807, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-      propertyPath: m_Height
-      value: 1.95126
-      objectReference: {fileID: 0}
-    - target: {fileID: 8600801440794128807, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-      propertyPath: m_Center.y
-      value: 0.029
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}

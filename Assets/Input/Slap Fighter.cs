@@ -65,6 +65,22 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Analog"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Normals"",
+                    ""type"": ""Button"",
+                    ""id"": ""69f049a8-d170-4bcb-9a80-ed983b682943"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Specials"",
+                    ""type"": ""Button"",
+                    ""id"": ""a24cdba5-00de-4b5a-92e4-cc0ae5df31e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -362,6 +378,50 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d190e116-44cb-49ca-8b66-ba38559e713c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Normals"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bae5223-ed53-4060-ad29-18c47462b70f"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Normals"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdc3f669-15d1-40af-80a6-f80d019b87d3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Specials"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffe1f616-e7d5-4f01-b80d-ad78139b45bf"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Specials"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -945,6 +1005,8 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
+        m_Player_Normals = m_Player.FindAction("Normals", throwIfNotFound: true);
+        m_Player_Specials = m_Player.FindAction("Specials", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1012,6 +1074,8 @@ public class @SlapFighter : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Shield;
+    private readonly InputAction m_Player_Normals;
+    private readonly InputAction m_Player_Specials;
     public struct PlayerActions
     {
         private @SlapFighter m_Wrapper;
@@ -1022,6 +1086,8 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Shield => m_Wrapper.m_Player_Shield;
+        public InputAction @Normals => m_Wrapper.m_Player_Normals;
+        public InputAction @Specials => m_Wrapper.m_Player_Specials;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1049,6 +1115,12 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 @Shield.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
                 @Shield.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
                 @Shield.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
+                @Normals.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormals;
+                @Normals.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormals;
+                @Normals.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormals;
+                @Specials.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
+                @Specials.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
+                @Specials.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1071,6 +1143,12 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 @Shield.started += instance.OnShield;
                 @Shield.performed += instance.OnShield;
                 @Shield.canceled += instance.OnShield;
+                @Normals.started += instance.OnNormals;
+                @Normals.performed += instance.OnNormals;
+                @Normals.canceled += instance.OnNormals;
+                @Specials.started += instance.OnSpecials;
+                @Specials.performed += instance.OnSpecials;
+                @Specials.canceled += instance.OnSpecials;
             }
         }
     }
@@ -1233,6 +1311,8 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
+        void OnNormals(InputAction.CallbackContext context);
+        void OnSpecials(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
