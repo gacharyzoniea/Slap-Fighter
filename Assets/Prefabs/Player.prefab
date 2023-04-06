@@ -2569,6 +2569,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 64
   isGrounded: 0
   groundDrag: 10
   castArea: {x: 2.86, y: 0.78, z: 2}

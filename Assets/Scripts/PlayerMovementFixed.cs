@@ -16,6 +16,7 @@ public class PlayerMovementFixed : MonoBehaviour
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
+    public LayerMask platformLayer;
     public bool isGrounded;
     public float groundDrag = 5f;
     [SerializeField] private Vector3 castArea = new Vector3(0, 0, 0);
@@ -122,7 +123,16 @@ public class PlayerMovementFixed : MonoBehaviour
         }
 
             //grounded check and drag
-            isGrounded = Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation,sphereCastDistance, groundLayer);
+            if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) || 
+                Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, platformLayer))
+                {
+                 isGrounded = true;
+                }
+            else
+        {
+            isGrounded = false;
+        }
+           // isGrounded = Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation,sphereCastDistance, groundLayer);
         if (isGrounded)
         {
             rbody.drag = groundDrag;
