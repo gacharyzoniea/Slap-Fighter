@@ -84,14 +84,14 @@ public class playerAttackScript : MonoBehaviour
     private void jab()
     {
         animator.SetTrigger("Jab");
-        StartCoroutine(attackBox(attackList[0] ,.35f));
+        StartCoroutine(attackBox(attackList[0] ,.35f, 3));
         StartCoroutine(endLag(.5f));
     }
 
     private void sweep()
     {
         animator.SetTrigger("Sweep");
-        StartCoroutine(attackBox(attackList[1], .4f));
+        StartCoroutine(attackBox(attackList[1], .4f, 2));
         StartCoroutine(endLag(.7f));
     }
 
@@ -102,18 +102,18 @@ public class playerAttackScript : MonoBehaviour
         moveLag = false;
     }
 
-    IEnumerator attackBox(Collider col, float timeToActivate)
+    IEnumerator attackBox(Collider col, float timeToActivate, int damage)
     {
         yield return new WaitForSeconds(timeToActivate);
-        launchAttack(col);
+        launchAttack(col, damage);
     }
 
-    private void launchAttack (Collider col)
+    private void launchAttack (Collider col, int damage)
     {
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
         foreach (Collider c in cols)
         {
-            if (c.transform.gameObject.layer == 13) //if collision with shield
+            if (c.transform.gameObject.layer == 13) //if collision with shield, attack blocked
             {
                 return;
             }
@@ -124,7 +124,7 @@ public class playerAttackScript : MonoBehaviour
             if (c.transform.root == transform)
                 continue;
 
-            Debug.Log(c.name);
+            c.transform.root.GetComponent<playerAttackScript>().healthBar.takeHealth(damage);
           
         }
     }

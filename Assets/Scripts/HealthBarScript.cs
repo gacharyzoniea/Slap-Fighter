@@ -18,4 +18,9 @@ public class HealthBarScript : MonoBehaviour
     {
         slider.value = health;
     }
+
+    public void takeHealth(int damage)
+    {
+        slider.value -= damage;
+    }
 }
