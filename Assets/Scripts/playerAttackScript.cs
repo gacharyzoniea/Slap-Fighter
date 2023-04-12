@@ -10,6 +10,8 @@ public class playerAttackScript : MonoBehaviour
     private PlayerDashScript _ds;
     Animator animator;
     public bool moveLag = false;
+    public HealthBarScript healthBar;
+    public int maxHealth = 100;
 
     private InputAction _attack;
     private InputAction _special;
@@ -42,6 +44,7 @@ public class playerAttackScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthBar.SetMaxHealth(maxHealth);
         _pm = GetComponent<PlayerMovementFixed>();
         _ds = GetComponent<PlayerDashScript>();
         animator = _pm.animator;
@@ -107,13 +110,22 @@ public class playerAttackScript : MonoBehaviour
 
     private void launchAttack (Collider col)
     {
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
-        foreach(Collider c in cols)
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
+        foreach (Collider c in cols)
+        {
+            if (c.transform.gameObject.layer == 13) //if collision with shield
+            {
+                return;
+            }
+        }
+
+        foreach (Collider c in cols)
         {
             if (c.transform.root == transform)
                 continue;
 
             Debug.Log(c.name);
+          
         }
     }
 }
