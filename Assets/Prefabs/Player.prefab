@@ -2627,6 +2627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveLag: 0
+  healthBar: {fileID: 0}
+  maxHealth: 100
   attackList:
   - {fileID: 1307653181}
   - {fileID: 1410894150}

@@ -48,18 +48,13 @@ public class PlayerMovementFixed : MonoBehaviour
         animator = animatedObject.GetComponent<Animator>();
         _canMove = true;
         _isDashing = false;
-        inputActions = this.GetComponent<PlayerInput>().actions;
+        inputActions = GetComponent<PlayerInput>().actions;
         player = inputActions.FindActionMap("Player");
-        //playerMovement = new SlapFighter();
         
     }
 
     private void OnEnable()
     {
-        //_move = playerMovement.Player.Move;
-        //_jump = playerMovement.Player.Jump;
-        //_jump.Enable();
-        //_move.Enable();
         _jump = player.FindAction("Jump");
         _move = player.FindAction("Move");
         player.Enable();
@@ -67,14 +62,12 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void OnDisable()
     {
-        //_jump.Disable();
-        //_move.Disable();
         player.Enable();
     }
 
     void Start()
     {
-        rbody = GetComponent<Rigidbody>();
+        rbody = transform.root.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -153,11 +146,11 @@ public class PlayerMovementFixed : MonoBehaviour
         fall.y += gravity * Time.deltaTime;
         rbody.AddForce(fall * Time.deltaTime, ForceMode.VelocityChange);
 
-        if(rbody.velocity.x >= 0)
+        if(_move.ReadValue<Vector2>().x > 0)
         {
             playerTransform.eulerAngles = new Vector3(0, 90, 0);
         }
-        else
+        else if(_move.ReadValue<Vector2>().x < 0)
         {
             playerTransform.eulerAngles = new Vector3(0, -90, 0);
         }

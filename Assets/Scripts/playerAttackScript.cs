@@ -10,6 +10,8 @@ public class playerAttackScript : MonoBehaviour
     private PlayerDashScript _ds;
     Animator animator;
     public bool moveLag = false;
+    public HealthBarScript healthBar;
+    public int maxHealth = 100;
 
     private InputAction _attack;
     private InputAction _special;
@@ -42,6 +44,7 @@ public class playerAttackScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthBar.SetMaxHealth(maxHealth);
         _pm = GetComponent<PlayerMovementFixed>();
         _ds = GetComponent<PlayerDashScript>();
         animator = _pm.animator;
@@ -81,14 +84,14 @@ public class playerAttackScript : MonoBehaviour
     private void jab()
     {
         animator.SetTrigger("Jab");
-        StartCoroutine(attackBox(attackList[0] ,.35f));
+        StartCoroutine(attackBox(attackList[0] ,.35f, 3, 3));
         StartCoroutine(endLag(.5f));
     }
 
     private void sweep()
     {
         animator.SetTrigger("Sweep");
-        StartCoroutine(attackBox(attackList[1], .4f));
+        StartCoroutine(attackBox(attackList[1], .4f, 2, 10));
         StartCoroutine(endLag(.7f));
     }
 
@@ -99,21 +102,37 @@ public class playerAttackScript : MonoBehaviour
         moveLag = false;
     }
 
-    IEnumerator attackBox(Collider col, float timeToActivate)
+    IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force)
     {
         yield return new WaitForSeconds(timeToActivate);
-        launchAttack(col);
+        launchAttack(col, damage, force);
     }
 
-    private void launchAttack (Collider col)
+    private void launchAttack (Collider col, int damage, float force)
     {
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
-        foreach(Collider c in cols)
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
+        foreach (Collider c in cols)
+        {
+            if (c.transform.gameObject.layer == 13) //if collision with shield, attack blocked
+            {
+                return;
+            }
+        }
+
+        foreach (Collider c in cols)
         {
             if (c.transform.root == transform)
                 continue;
 
-            Debug.Log(c.name);
+            c.transform.root.GetComponent<playerAttackScript>().healthBar.takeHealth(damage);
+            Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>());
+
+
         }
+    }
+
+    private void Knockback(Vector3 dir, float force, Rigidbody rbody)
+    {
+        rbody.AddForce(dir * force, ForceMode.VelocityChange);
     }
 }
