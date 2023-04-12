@@ -1935,6 +1935,7 @@ GameObject:
   - component: {fileID: 2876550261579523160}
   - component: {fileID: 2876550260427229600}
   - component: {fileID: 5893756164165973367}
+  - component: {fileID: 990560158233355105}
   m_Layer: 12
   m_Name: PlayerTwo
   m_TagString: Untagged
@@ -2257,9 +2258,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveLag: 0
+  healthBar: {fileID: 0}
+  maxHealth: 0
   attackList:
   - {fileID: 2876550261927192095}
   - {fileID: 2876550261534595940}
+--- !u!114 &990560158233355105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816293845989106564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97123c44406f63e46a1fc1e10587c505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
 --- !u!1 &5942982818731166943
 GameObject:
   m_ObjectHideFlags: 0
