@@ -79,6 +79,14 @@ public class playerAttackScript : MonoBehaviour
         {
             sweep();
         }
+        else if (!moveLag && _attack.triggered && _move.ReadValue<Vector2>().magnitude > .05 && _pm.isGrounded)
+        {
+            roundhouse();
+        }
+        else if (!moveLag && _attack.triggered && _move.ReadValue<Vector2>().y > 0 && _pm.isGrounded)
+        {
+            uppercut();
+        }
     }
 
     private void jab()
@@ -93,6 +101,20 @@ public class playerAttackScript : MonoBehaviour
         animator.SetTrigger("Sweep");
         StartCoroutine(attackBox(attackList[1], .4f, 2, 10));
         StartCoroutine(endLag(.7f));
+    }
+
+    private void roundhouse()
+    {
+        animator.SetTrigger("Roundhouse");
+        StartCoroutine(attackBox(attackList[2], .4f, 5, 10));
+        StartCoroutine(endLag(0.7f));
+    }
+
+    private void uppercut()
+    {
+        animator.SetTrigger("Uppercut");
+        StartCoroutine(attackBox(attackList[3], .4f, 5, 15));
+        StartCoroutine(endLag(0.7f));
     }
 
     IEnumerator endLag (float endlag)
