@@ -2475,6 +2475,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1463087354928313302, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463087354928313302, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388558020843172662, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388558020843172662, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.674
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388558020843172662, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.451
+      objectReference: {fileID: 0}
     - target: {fileID: 8512185073438205781, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
       propertyPath: healthBar
       value: 

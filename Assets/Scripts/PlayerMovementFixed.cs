@@ -92,6 +92,11 @@ public class PlayerMovementFixed : MonoBehaviour
         if (isGrounded)
         {
             canDouble = true;
+            animator.SetBool("grounded", true);
+        }
+        else
+        {
+            animator.SetBool("grounded", false);
         }
         //basic movement
         _movement = _move.ReadValue<Vector2>();
