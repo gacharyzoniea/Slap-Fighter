@@ -79,7 +79,7 @@ public class playerAttackScript : MonoBehaviour
         {
             sweep();
         }
-        else if (!moveLag && _attack.triggered && _move.ReadValue<Vector2>().magnitude > .05 && _pm.isGrounded)
+        else if (!moveLag && _attack.triggered && _move.ReadValue<Vector2>().x > .05 && _pm.isGrounded)
         {
             roundhouse();
         }
@@ -93,7 +93,7 @@ public class playerAttackScript : MonoBehaviour
     {
         animator.SetTrigger("Jab");
         StartCoroutine(attackBox(attackList[0] ,.35f, 3, 3));
-        StartCoroutine(endLag(.5f));
+        StartCoroutine(endLag(.4f));
     }
 
     private void sweep()
@@ -107,7 +107,7 @@ public class playerAttackScript : MonoBehaviour
     {
         animator.SetTrigger("Roundhouse");
         StartCoroutine(attackBox(attackList[2], .4f, 5, 10));
-        StartCoroutine(endLag(0.7f));
+        StartCoroutine(endLag(0.5f));
     }
 
     private void uppercut()
