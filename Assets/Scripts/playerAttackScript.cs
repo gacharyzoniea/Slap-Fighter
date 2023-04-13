@@ -79,7 +79,7 @@ public class playerAttackScript : MonoBehaviour
         {
             sweep();
         }
-        else if (!moveLag && _attack.triggered && _move.ReadValue<Vector2>().magnitude > .05 && _pm.isGrounded)
+        else if (!moveLag && _attack.triggered && _move.ReadValue<Vector2>().x > .05 && _pm.isGrounded)
         {
             roundhouse();
         }
