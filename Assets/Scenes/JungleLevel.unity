@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 41461715}
+  assigned: 0
 --- !u!114 &41461715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,9 +808,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8512185073438205781, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: whiff
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d47d257ff4412b41828cbe91cc63592, type: 3}
+    - target: {fileID: 8512185073438205781, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 2011790152}
+    - target: {fileID: 8512185073438205781, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: attackHeavy
+      value: 
+      objectReference: {fileID: 8300000, guid: fe8fb79484f0e9549827d4204e5bc221, type: 3}
+    - target: {fileID: 8512185073438205781, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: attackLight
+      value: 
+      objectReference: {fileID: 8300000, guid: 9291cfbf3c68f784e9b5286ea32583a2, type: 3}
     - target: {fileID: 8600801440794128802, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2722,6 +2735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2011790153}
+  assigned: 0
 --- !u!114 &2011790153
 MonoBehaviour:
   m_ObjectHideFlags: 0
