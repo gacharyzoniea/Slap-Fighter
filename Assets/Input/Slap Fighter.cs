@@ -75,6 +75,14 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""NormalStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""54996006-c3b4-46a7-8474-7ea0d18b6d61"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Specials"",
                     ""type"": ""Button"",
                     ""id"": ""a24cdba5-00de-4b5a-92e4-cc0ae5df31e1"",
@@ -118,31 +126,9 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""5ac2fbfa-14f0-4999-b62f-f7a26d4e3a47"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""down"",
                     ""id"": ""97e842a5-400d-47e0-8096-7027d25a599e"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1c5327b5-f71c-4f60-99c7-4e737386f1d1"",
-                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -162,31 +148,9 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""2e46982e-44cc-431b-9f0b-c11910bf467a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""right"",
                     ""id"": ""fcfe95b8-67b9-4526-84b5-5d0bc98d6400"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""77bff152-3580-4b21-b6de-dcd0c7e41164"",
-                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -424,6 +388,116 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""action"": ""Specials"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""8ec7a8f3-a9d2-4b98-8ad1-a33a44b23b5a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""805d5a03-2003-4e25-be95-5bc371959163"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a2800392-53fa-40c1-b6f0-48d1f2a48c9f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9307fd3e-411e-4680-a9a1-a6f6277446f2"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5c9c86a0-b22a-4ec8-a507-1a2b7962ab80"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e98cc7a9-28d1-4bcd-8b4b-31bd3b3db78d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""dbd7023a-34f8-485c-ac05-55bd73f47cc4"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""10d6fd24-b8fc-49f9-a92c-087bc731113a"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""611ee4de-e70a-49f0-83f9-7a32a71659b4"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e432e22b-914f-495a-a280-b24d86248352"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NormalStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1006,6 +1080,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
         m_Player_Normals = m_Player.FindAction("Normals", throwIfNotFound: true);
+        m_Player_NormalStick = m_Player.FindAction("NormalStick", throwIfNotFound: true);
         m_Player_Specials = m_Player.FindAction("Specials", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1075,6 +1150,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Shield;
     private readonly InputAction m_Player_Normals;
+    private readonly InputAction m_Player_NormalStick;
     private readonly InputAction m_Player_Specials;
     public struct PlayerActions
     {
@@ -1087,6 +1163,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Shield => m_Wrapper.m_Player_Shield;
         public InputAction @Normals => m_Wrapper.m_Player_Normals;
+        public InputAction @NormalStick => m_Wrapper.m_Player_NormalStick;
         public InputAction @Specials => m_Wrapper.m_Player_Specials;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1118,6 +1195,9 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 @Normals.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormals;
                 @Normals.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormals;
                 @Normals.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormals;
+                @NormalStick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormalStick;
+                @NormalStick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormalStick;
+                @NormalStick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNormalStick;
                 @Specials.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
                 @Specials.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
                 @Specials.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
@@ -1146,6 +1226,9 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 @Normals.started += instance.OnNormals;
                 @Normals.performed += instance.OnNormals;
                 @Normals.canceled += instance.OnNormals;
+                @NormalStick.started += instance.OnNormalStick;
+                @NormalStick.performed += instance.OnNormalStick;
+                @NormalStick.canceled += instance.OnNormalStick;
                 @Specials.started += instance.OnSpecials;
                 @Specials.performed += instance.OnSpecials;
                 @Specials.canceled += instance.OnSpecials;
@@ -1312,6 +1395,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
         void OnNormals(InputAction.CallbackContext context);
+        void OnNormalStick(InputAction.CallbackContext context);
         void OnSpecials(InputAction.CallbackContext context);
     }
     public interface IUIActions

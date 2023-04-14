@@ -65,7 +65,6 @@ public class PlatformColliderScript : MonoBehaviour
 
 
             float dot = Vector3.Dot(direction, collisionDirection);
-            print(dot);
             //Opposite direction
             if (dot < 0)
             {

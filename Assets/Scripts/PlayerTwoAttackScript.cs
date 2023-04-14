@@ -5,7 +5,7 @@ using System.Net.Mail;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerAttackScript : MonoBehaviour
+public class PlayerTwoAttackScript : MonoBehaviour
 {
 
     private PlayerMovementFixed _pm;
@@ -13,7 +13,6 @@ public class playerAttackScript : MonoBehaviour
     Animator animator;
     public bool moveLag = false;
     public HealthBarScript healthBar;
-    private HealthBarScript[] healthList;
     public int maxHealth = 100;
 
     private InputAction _attack;
@@ -33,10 +32,13 @@ public class playerAttackScript : MonoBehaviour
         //playerMovement = new SlapFighter();
         inputActions = this.GetComponent<PlayerInput>().actions;
         player = inputActions.FindActionMap("Player");
-        if (healthBar == null)
+        if(healthBar == null)
         {
-            healthBar = GameObject.FindGameObjectWithTag("Right").GetComponent<HealthBarScript>();
+            Debug.Log("works");
         }
+        Debug.Log(healthBar);
+        healthBar = GameObject.FindGameObjectWithTag("Right").GetComponent<HealthBarScript>();
+        Debug.Log(healthBar);
     }
     private void OnEnable()
     {
@@ -65,7 +67,7 @@ public class playerAttackScript : MonoBehaviour
     void Update()
     {
         moveVal = _move.ReadValue<Vector2>().magnitude;
-        
+
         if (moveLag)
         {
             _pm._canMoveLag = false;
@@ -86,7 +88,7 @@ public class playerAttackScript : MonoBehaviour
         {
             jab();
         }
-        else if(!moveLag && _pm.isGrounded && _attack.triggered && _move.ReadValue<Vector2>().y < 0 && _pm.isGrounded)
+        else if (!moveLag && _pm.isGrounded && _attack.triggered && _move.ReadValue<Vector2>().y < 0 && _pm.isGrounded)
         {
             sweep();
         }
@@ -116,7 +118,7 @@ public class playerAttackScript : MonoBehaviour
     private void jab()
     {
         animator.SetTrigger("Jab");
-        StartCoroutine(attackBox(attackList[0] ,.35f, 3, 4));
+        StartCoroutine(attackBox(attackList[0], .35f, 3, 4));
         StartCoroutine(endLag(.4f));
     }
 
@@ -160,7 +162,7 @@ public class playerAttackScript : MonoBehaviour
         StartCoroutine(attackBox(attackList[6], .35f, 2, 10, new Vector3(0, -1, 0)));
         StartCoroutine(endLag(.75f));
     }
-    IEnumerator endLag (float endlag)
+    IEnumerator endLag(float endlag)
     {
         moveLag = true;
         yield return new WaitForSeconds(endlag);
@@ -182,7 +184,7 @@ public class playerAttackScript : MonoBehaviour
     }
 
     //implied knockback
-    private void launchAttack (Collider col, int damage, float force)
+    private void launchAttack(Collider col, int damage, float force)
     {
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
         foreach (Collider c in cols)
@@ -230,8 +232,8 @@ public class playerAttackScript : MonoBehaviour
 
     private void Knockback(Vector3 dir, float force, Rigidbody rbody)
     {
-            rbody.velocity = Vector3.zero;
-            rbody.AddForce(dir * force, ForceMode.VelocityChange);
+        rbody.velocity = Vector3.zero;
+        rbody.AddForce(dir * force, ForceMode.VelocityChange);
     }
 
 }

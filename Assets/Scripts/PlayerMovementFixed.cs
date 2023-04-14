@@ -50,7 +50,6 @@ public class PlayerMovementFixed : MonoBehaviour
         _isDashing = false;
         inputActions = GetComponent<PlayerInput>().actions;
         player = inputActions.FindActionMap("Player");
-        
     }
 
     private void OnEnable()
@@ -93,10 +92,12 @@ public class PlayerMovementFixed : MonoBehaviour
         {
             canDouble = true;
             animator.SetBool("grounded", true);
+            animator.SetBool("FreeFall", false);
         }
         else
         {
             animator.SetBool("grounded", false);
+            animator.SetBool("FreeFall", true);
         }
         //basic movement
         _movement = _move.ReadValue<Vector2>();
@@ -148,17 +149,12 @@ public class PlayerMovementFixed : MonoBehaviour
         {
             fall.y = -150f;
         }
+
         fall.y += gravity * Time.deltaTime;
         rbody.AddForce(fall * Time.deltaTime, ForceMode.VelocityChange);
 
-        if(_move.ReadValue<Vector2>().x > 0)
-        {
-            playerTransform.eulerAngles = new Vector3(0, 90, 0);
-        }
-        else if(_move.ReadValue<Vector2>().x < 0)
-        {
-            playerTransform.eulerAngles = new Vector3(0, -90, 0);
-        }
+        turnPlayer();
+        
     }
 
     private void movePlayer()
@@ -182,6 +178,20 @@ public class PlayerMovementFixed : MonoBehaviour
         }
     }
 
+    private void turnPlayer()
+    {
+        if (_canMoveLag)
+        {
+            if (_move.ReadValue<Vector2>().x > 0.4f)
+            {
+                playerTransform.eulerAngles = new Vector3(0, 90, 0);
+            }
+            else if (_move.ReadValue<Vector2>().x < -0.4)
+            {
+                playerTransform.eulerAngles = new Vector3(0, -90, 0);
+            }
+        }
+    }
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rbody.velocity.x, 0f, 0f);
@@ -199,9 +209,9 @@ public class PlayerMovementFixed : MonoBehaviour
         {
             canDouble = false;
         }
+        animator.SetTrigger("Jump");
         rbody.velocity = new Vector3(rbody.velocity.x, 0f, rbody.velocity.z);
-
-        rbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);  
     }
 
 
