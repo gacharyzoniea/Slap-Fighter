@@ -388,7 +388,7 @@ MeshCollider:
   m_GameObject: {fileID: 254721713}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -807,6 +807,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 830922770845171983, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 4104
+      objectReference: {fileID: 0}
     - target: {fileID: 8512185073438205781, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
       propertyPath: whiff
       value: 
