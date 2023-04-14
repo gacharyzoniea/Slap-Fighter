@@ -26,10 +26,17 @@ public class playerAttackScript : MonoBehaviour
     public float attackLength = .4f;
     public float attackhit = .4f;
 
+    public AudioClip attackLight;
+    public AudioClip attackHeavy;
+    public AudioClip whiff;
+    
+    private AudioSource _source;
+
     [SerializeField] private Collider[] attackList;
 
     private void Awake()
     {
+        _source = this.GetComponent<AudioSource>();
         //playerMovement = new SlapFighter();
         inputActions = this.GetComponent<PlayerInput>().actions;
         player = inputActions.FindActionMap("Player");
@@ -116,48 +123,50 @@ public class playerAttackScript : MonoBehaviour
     private void jab()
     {
         animator.SetTrigger("Jab");
-        StartCoroutine(attackBox(attackList[0] ,.35f, 3, 4));
+        StartCoroutine(attackBox(attackList[0] ,.35f, 3, 4, attackLight));
+        StartCoroutine(SwooshSound(0.35f));
         StartCoroutine(endLag(.4f));
     }
 
     private void sweep()
     {
         animator.SetTrigger("Sweep");
-        StartCoroutine(attackBox(attackList[1], attackLength, 2, 7));
+        StartCoroutine(attackBox(attackList[1], attackLength, 2, 7, attackLight));
+        StartCoroutine(SwooshSound(attackLength));
         StartCoroutine(endLag(.55f));
     }
 
     private void roundhouse()
     {
         animator.SetTrigger("Roundhouse");
-        StartCoroutine(attackBox(attackList[2], .3f, 2, 10));
+        StartCoroutine(attackBox(attackList[2], .3f, 2, 10, attackHeavy));
         StartCoroutine(endLag(.4f));
     }
 
     private void uppercut()
     {
         animator.SetTrigger("Uppercut");
-        StartCoroutine(attackBox(attackList[3], .3f, 5, 12, new Vector3(0, 1, 0)));
+        StartCoroutine(attackBox(attackList[3], .3f, 5, 12, new Vector3(0, 1, 0), attackHeavy));
         StartCoroutine(endLag(.35f));
     }
 
     private void uair()
     {
         animator.SetTrigger("Uair");
-        StartCoroutine(attackBox(attackList[4], .4f, 2, 11, new Vector3(0, 1, 0)));
+        StartCoroutine(attackBox(attackList[4], .4f, 2, 11, new Vector3(0, 1, 0), attackLight));
         StartCoroutine(endLag(.75f));
     }
 
     private void fair()
     {
         animator.SetTrigger("Fair");
-        StartCoroutine(attackBox(attackList[5], .35f, 2, 10, new Vector3(.1f, 1, 0)));
+        StartCoroutine(attackBox(attackList[5], .35f, 2, 10, new Vector3(.1f, 1, 0), attackLight));
         StartCoroutine(endLag(.4f));
     }
     private void dair()
     {
         animator.SetTrigger("Dair");
-        StartCoroutine(attackBox(attackList[6], .35f, 2, 10, new Vector3(0, -1, 0)));
+        StartCoroutine(attackBox(attackList[6], .35f, 2, 10, new Vector3(0, -1, 0), attackHeavy));
         StartCoroutine(endLag(.75f));
     }
     IEnumerator endLag (float endlag)
@@ -174,10 +183,26 @@ public class playerAttackScript : MonoBehaviour
         launchAttack(col, damage, force);
     }
 
+    //implied knockback (with audio)
+    IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force, AudioClip audio)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        _source.PlayOneShot(audio);
+        launchAttack(col, damage, force);
+    }
+
     //manual knockback
     IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force, Vector3 dir)
     {
         yield return new WaitForSeconds(timeToActivate);
+        launchAttack(col, damage, force, dir);
+    }
+
+    //manual knockback (with audio)
+    IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force, Vector3 dir, AudioClip audio)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        _source.PlayOneShot(audio);
         launchAttack(col, damage, force, dir);
     }
 
@@ -232,6 +257,12 @@ public class playerAttackScript : MonoBehaviour
     {
             rbody.velocity = Vector3.zero;
             rbody.AddForce(dir * force, ForceMode.VelocityChange);
+    }
+
+    IEnumerator SwooshSound(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        _source.PlayOneShot(whiff);
     }
 
 }
