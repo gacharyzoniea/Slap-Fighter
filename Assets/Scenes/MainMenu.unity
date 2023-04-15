@@ -4438,7 +4438,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2073477240}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: exitGame
+        m_MethodName: loadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
