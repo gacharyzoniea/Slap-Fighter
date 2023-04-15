@@ -11,6 +11,7 @@ public class PlayerPlatformInteractScript : MonoBehaviour
     int groundLayer = 3;
     int hitboxLayer = 12;
     public Vector3 playerPos;
+    public PlayerMovementFixed _pm;
 
     //private PlayerMovementFixed _pm;
     //private InputAction _move;
@@ -30,7 +31,6 @@ public class PlayerPlatformInteractScript : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
             {
 
-                print("S");
             //Vector3.Slerp(playerPos, new Vector3(playerPos.x, playerPos.y - 2f, playerPos.z), 0.01f);
             //(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.5f, this.gameObject.transform.position.z));
                 Physics.IgnoreLayerCollision(12, platformLayer, true);

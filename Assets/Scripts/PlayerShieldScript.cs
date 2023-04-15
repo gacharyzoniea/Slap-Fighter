@@ -7,13 +7,13 @@ using UnityEngine.InputSystem;
 public class PlayerShieldScript : MonoBehaviour
 {
     [Header("References")]
-    private PlayerMovementFixed _pm;
+    public PlayerMovementFixed _pm;
     public GameObject shieldObject;
     private Vector3 shieldSize;
 
     [Header("Shield options")]
     public float shieldLength;
-    private bool _isShielding;
+    public bool _isShielding = false;
     public float shieldMin;
     private float shieldHealth = 100;
 
@@ -24,27 +24,11 @@ public class PlayerShieldScript : MonoBehaviour
     private InputActionAsset inputActions;
     private InputActionMap player;
 
-    private void Awake()
-    {
-        inputActions = this.GetComponent<PlayerInput>().actions;
-        player = inputActions.FindActionMap("Player");
-    }
-    private void OnEnable()
-    {
-        _shield = player.FindAction("Shield");
-        player.Enable();
-    }
-    private void OnDisable()
-    {
-        player.Disable();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         shieldSize = shieldObject.gameObject.transform.localScale;
         _pm = GetComponent<PlayerMovementFixed>();
-        _isShielding = false;
         StartCoroutine(addShield());
         StartCoroutine(removeShield());
     }
@@ -52,31 +36,34 @@ public class PlayerShieldScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_shield.ReadValue<float>() > 0 && _pm.isGrounded)
-        {
-            _isShielding = true;
-            _pm.animator.SetBool("Blocking", true);
-        }
-        else
-        {
-            _isShielding=false;
-            _pm.animator.SetBool("Blocking", false);
-        }
+        //if(_shield.ReadValue<float>() > 0 && _pm.isGrounded)
+        //{
+        //    _isShielding = true;
+        //    _pm.animator.SetBool("Blocking", true);
+        //}
+        //else
+        //{
+        //    _isShielding=false;
+        //    _pm.animator.SetBool("Blocking", false);
+        //}
 
 
         if (_isShielding)
         {
+            _pm.animator.SetBool("Blocking", true);
             Shield();
         }
         else
         {
             _isShielding = false;
             _pm._canMove = true;
+            _pm.animator.SetBool("Blocking", false);
             shieldObject.SetActive(false);
         }
 
         Mathf.Clamp(shieldHealth, 0, 100);
     }
+
 
     private void Shield()
     {

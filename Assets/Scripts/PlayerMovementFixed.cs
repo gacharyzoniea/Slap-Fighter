@@ -7,7 +7,7 @@ public class PlayerMovementFixed : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-    Vector3 _movement;
+    public Vector3 _movement;
     Vector3 _movementDirection;
     public bool _isDashing;
     public bool _canMove = true;
@@ -27,7 +27,7 @@ public class PlayerMovementFixed : MonoBehaviour
     public float airMultiplier;
     public float gravity = -75f;
     Vector3 fall;
-    bool canDouble;
+    public bool canDouble;
 
     [Header("Animation")]
     public Animator animator;
@@ -48,20 +48,6 @@ public class PlayerMovementFixed : MonoBehaviour
         animator = animatedObject.GetComponent<Animator>();
         _canMove = true;
         _isDashing = false;
-        inputActions = GetComponent<PlayerInput>().actions;
-        player = inputActions.FindActionMap("Player");
-    }
-
-    private void OnEnable()
-    {
-        _jump = player.FindAction("Jump");
-        _move = player.FindAction("Move");
-        player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        player.Enable();
     }
 
     void Start()
@@ -74,7 +60,7 @@ public class PlayerMovementFixed : MonoBehaviour
         if (_canMove && _canMoveLag)
         {
             movePlayer();
-            animator.SetFloat("Move", _move.ReadValue<Vector2>().x); 
+            animator.SetFloat("Move", _movement.x); 
         }
         if (_movement.y < 0)
         {
@@ -100,26 +86,25 @@ public class PlayerMovementFixed : MonoBehaviour
             animator.SetBool("FreeFall", true);
         }
         //basic movement
-        _movement = _move.ReadValue<Vector2>();
+        //_movement = _move.ReadValue<Vector2>();
         if (!_isDashing)
         {
             SpeedControl();
         }
 
         //jump
-        if (_jump.triggered && _canJump)
-        {
-            if(isGrounded)
-            {
-                Jump();
-            }
-            else if (canDouble)
-            {
-                canDouble = false;
-                Jump();
-            }
-            
-        }
+        //if (_jump.triggered && _canJump)
+        //{
+        //    if(isGrounded)
+        //    {
+        //        Jump();
+        //    }
+        //    else if (canDouble)
+        //    {
+        //        canDouble = false;
+        //        Jump();
+        //    }
+        //}
 
             //grounded check and drag
             if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) || 
@@ -157,7 +142,12 @@ public class PlayerMovementFixed : MonoBehaviour
         
     }
 
-    private void movePlayer()
+    public void setMovement(Vector3 movement)
+    {
+        _movement = movement;
+    }
+
+    public void movePlayer()
     {
         _movementDirection = _movement * moveSpeed;
         if (isGrounded)
@@ -182,16 +172,17 @@ public class PlayerMovementFixed : MonoBehaviour
     {
         if (_canMoveLag)
         {
-            if (_move.ReadValue<Vector2>().x > 0.4f)
+            if (_movement.x > 0.4f)
             {
                 playerTransform.eulerAngles = new Vector3(0, 90, 0);
             }
-            else if (_move.ReadValue<Vector2>().x < -0.4)
+            else if (_movement.x < -0.4)
             {
                 playerTransform.eulerAngles = new Vector3(0, -90, 0);
             }
         }
     }
+
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rbody.velocity.x, 0f, 0f);
@@ -203,7 +194,7 @@ public class PlayerMovementFixed : MonoBehaviour
         }
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (canDouble)
         {
