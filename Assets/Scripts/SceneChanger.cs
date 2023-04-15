@@ -12,10 +12,10 @@ public class SceneChanger : MonoBehaviour
 
     /******************WILL LOAD GAME, NOT YET CREATED******************/
 
-    //public void loadGame()
-    //{
-    //    SceneManager.LoadScene(ConstantLabels.);
-    //}
+    public void loadGame()
+    {
+        SceneManager.LoadScene("JungleLevel");
+    }
 
     public void exitGame()
     {
