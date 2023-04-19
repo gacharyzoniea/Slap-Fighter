@@ -30,23 +30,6 @@ public class PlayerDashScript : MonoBehaviour
     private InputActionAsset inputActions;
     private InputActionMap player;
 
-    private void Awake()
-    {
-        //playerMovement = new SlapFighter();
-        inputActions = this.GetComponent<PlayerInput>().actions;
-        player = inputActions.FindActionMap("Player");
-    }
-    private void OnEnable()
-    {
-        _dash = player.FindAction("Dash");
-        _move = player.FindAction("Move");
-        player.Enable();
-    }
-    private void OnDisable()
-    {
-        player.Disable();
-    }
-
     private void Start()
     {
         rbody = GetComponent<Rigidbody>();
@@ -56,11 +39,11 @@ public class PlayerDashScript : MonoBehaviour
     }
     private void Update()
     {
-        orientation = _move.ReadValue<Vector2>();
-        if (_dash.triggered)
-        {
-            Dash();
-        }
+        orientation = pm._movement;
+        //if (_dash.triggered)
+        //{
+        //    Dash();
+        //}
         if (dashCdTimer > 0)
         {
             dashCdTimer -= Time.deltaTime;
@@ -70,7 +53,7 @@ public class PlayerDashScript : MonoBehaviour
             dashCdTimer = .1f;
         }
     }
-    private void Dash()
+    public void Dash()
     {
         if (!pm._isDashing && dashCdTimer <= 0 && canDash)
         {

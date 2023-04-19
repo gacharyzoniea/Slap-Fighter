@@ -10,13 +10,17 @@ public class PlayerManagerScript : MonoBehaviour
     [SerializeField]
     private List<Transform> startingPoints;
     [SerializeField]
-    private List<LayerMask> playerLayers;
+    //private List<LayerMask> playerLayers;
+    //private GameObject[] playerList;
+    public GameObject[] healthList;
+
 
     private PlayerInputManager playerInputManager;
 
     private void Awake()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
+        //healthList = GameObject.FindGameObjectsWithTag("Right");
     }
 
     private void OnEnable()
@@ -34,5 +38,13 @@ public class PlayerManagerScript : MonoBehaviour
 
         Transform playerParent = player.transform;
         playerParent.position = startingPoints[players.Count - 1].position;
+    }
+
+    private void Update()
+    {
+        //playerList = GameObject.FindGameObjectsWithTag("Player");
+        //foreach (GameObject player in playerList){
+        //    player.playerAttackScript()
+        //}
     }
 }

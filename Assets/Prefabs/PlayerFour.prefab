@@ -443,10 +443,10 @@ GameObject:
   - component: {fileID: 5808719346337832537}
   - component: {fileID: 5808719347525645217}
   - component: {fileID: 4651295345016287467}
-  - component: {fileID: 8591996787089938337}
-  - component: {fileID: -7552931521388902438}
+  - component: {fileID: -6454187645526685220}
+  - component: {fileID: -8576954612567410206}
   m_Layer: 12
-  m_Name: PlayerTwo
+  m_Name: PlayerFour
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,7 +460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2864456690791504261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.42, y: 15.81, z: -4.43}
+  m_LocalPosition: {x: -3.5, y: 27.42, z: -4.43}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 5808719346009722646}
@@ -787,21 +787,7 @@ MonoBehaviour:
   - {fileID: 4907026660722011606, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
   - {fileID: 5108569231377274407, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
   - {fileID: 1723908449793941183, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
---- !u!114 &8591996787089938337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2864456690791504261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfb7e70b12f5f094387903f6bf72c484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPos: {x: 0, y: 0, z: 0}
-  _pm: {fileID: 0}
---- !u!82 &-7552931521388902438
+--- !u!82 &-6454187645526685220
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -897,6 +883,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8576954612567410206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2864456690791504261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb7e70b12f5f094387903f6bf72c484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPos: {x: 0, y: 0, z: 0}
+  _pm: {fileID: 0}
 --- !u!1 &2940645000055984994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,8 +2253,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09c13775d4710ff44b0edf684c7e3508, type: 2}
-  - {fileID: 2100000, guid: 1895d138244e1f24abd790b9af380b96, type: 2}
+  - {fileID: 2100000, guid: ff95ee545303c1c4cb24003625695c26, type: 2}
+  - {fileID: 2100000, guid: e7415624d2c75774196a490b84688257, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

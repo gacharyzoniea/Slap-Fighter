@@ -32,7 +32,6 @@ public class PlayerPlatformInteractScript : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.S) && !_playerAttackScript.moveLag)
             {
 
-                print("S");
             //Vector3.Slerp(playerPos, new Vector3(playerPos.x, playerPos.y - 2f, playerPos.z), 0.01f);
             //(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.5f, this.gameObject.transform.position.z));
                 
