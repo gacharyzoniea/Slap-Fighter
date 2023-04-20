@@ -2335,7 +2335,7 @@ GameObject:
   - component: {fileID: -3990789193660532628}
   - component: {fileID: 830922770845171983}
   m_Layer: 12
-  m_Name: Player
+  m_Name: PlayerOne
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2465,14 +2465,6 @@ MonoBehaviour:
     m_ActionName: Player/Move[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/1A86-E026/stick]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2d5bf185-294b-4fdb-88c1-4bc164d28b75
-    m_ActionName: Player/Look[/SwitchProControllerHID/rightStick,/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 870bc3b4-9fd2-4460-8f8a-88958dd0d01b
-    m_ActionName: Player/Fire[/SwitchProControllerHID/rightTrigger,/Mouse/leftButton,/1A86-E026/trigger]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 3391e4a0-fd6d-4ba4-bc31-9f0a79ee73cd
     m_ActionName: Player/Jump[/Keyboard/space,/SwitchProControllerHID/buttonNorth,/SwitchProControllerHID/buttonWest]
   - m_PersistentCalls:
@@ -2535,6 +2527,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ee784c56-2c1d-40f9-990d-66a7d5c1a83d
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 505cc7e8-2bcc-48a2-8976-c9a36ca6b169
+    m_ActionName: Player/Pause[/SwitchProControllerHID/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2687,7 +2683,9 @@ MonoBehaviour:
   gravity: -75.6
   canDouble: 0
   animator: {fileID: 0}
+  jumpAnim: {fileID: 0}
   animatedObject: {fileID: 919132148964174655}
+  jumpObject: {fileID: 0}
   playerTransform: {fileID: 543450652682416517}
 --- !u!114 &1498035834
 MonoBehaviour:
@@ -2861,7 +2859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0, z: 0}
-  _pm: {fileID: 0}
 --- !u!1 &8670540289560050497
 GameObject:
   m_ObjectHideFlags: 0

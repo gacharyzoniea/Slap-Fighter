@@ -37,7 +37,6 @@ public class playerAttackScript : MonoBehaviour
     private void Awake()
     {
         healthBarList = GameObject.FindGameObjectsWithTag("Right");
-        print(healthBarList.Length);
         _source = this.GetComponent<AudioSource>();
         //playerMovement = new SlapFighter();
         //if (healthBar == null)
@@ -127,7 +126,6 @@ public class playerAttackScript : MonoBehaviour
     public void jab()
     {
         animator.SetTrigger("Jab");
-        Debug.Log("here");
         StartCoroutine(attackBox(attackList[0] ,.35f, 3, 4, attackLight));
         StartCoroutine(SwooshSound(0.35f));
         StartCoroutine(endLag(.4f));
@@ -217,32 +215,24 @@ public class playerAttackScript : MonoBehaviour
     //implied knockback
     private void launchAttack (Collider col, int damage, float force)
     {
-        Debug.Log("here");
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
         Debug.Log(cols.Length);
         foreach (Collider c in cols)
         {
-            Debug.Log("here");
             if (c.transform.gameObject.layer == 13) //if collision with shield, attack blocked
             {
-                Debug.Log("here");
                 return;
             }
         }
 
         foreach (Collider c in cols)
         {
-            Debug.Log("here");
             if (c.transform.root == transform)
             {
-                Debug.Log("here");
                 continue;
             }
-            Debug.Log("here");
             c.transform.root.GetComponent<playerAttackScript>().healthBar.takeHealth(damage);
-            Debug.Log("here");
             Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>());
-            Debug.Log("here");
 
         }
     }

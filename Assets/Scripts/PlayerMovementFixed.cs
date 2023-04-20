@@ -41,6 +41,7 @@ public class PlayerMovementFixed : MonoBehaviour
     private InputActionMap player;
     public Transform playerTransform;
     Rigidbody rbody;
+    PauseScript pauseScript;
 
 
     private void Awake()
@@ -53,6 +54,7 @@ public class PlayerMovementFixed : MonoBehaviour
     void Start()
     {
         rbody = transform.root.GetComponent<Rigidbody>();
+        pauseScript = GameObject.FindGameObjectWithTag(ConstantLabels.PAUSE).GetComponent<PauseScript>();
     }
 
     private void FixedUpdate()
@@ -170,7 +172,7 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void turnPlayer()
     {
-        if (_canMoveLag)
+        if (_canMoveLag && !pauseScript.GameIsPaused)
         {
             if (_movement.x > 0.4f)
             {
@@ -205,6 +207,17 @@ public class PlayerMovementFixed : MonoBehaviour
         rbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);  
     }
 
+    public void Pause()
+    {
+        if (!pauseScript.GameIsPaused)
+        {
+            pauseScript.Pause();
+        }
+        else
+        {
+            pauseScript.Resume();
+        }
+    }
 
     void OnDrawGizmosSelected()
     {

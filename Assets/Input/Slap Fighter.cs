@@ -73,6 +73,14 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""505cc7e8-2bcc-48a2-8976-c9a36ca6b169"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -394,6 +402,17 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""action"": ""NormalStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""204064b5-a3a6-4f26-86e0-14ada0238fe2"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -976,6 +995,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         m_Player_Normals = m_Player.FindAction("Normals", throwIfNotFound: true);
         m_Player_NormalStick = m_Player.FindAction("NormalStick", throwIfNotFound: true);
         m_Player_Specials = m_Player.FindAction("Specials", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1044,6 +1064,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Normals;
     private readonly InputAction m_Player_NormalStick;
     private readonly InputAction m_Player_Specials;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @SlapFighter m_Wrapper;
@@ -1055,6 +1076,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         public InputAction @Normals => m_Wrapper.m_Player_Normals;
         public InputAction @NormalStick => m_Wrapper.m_Player_NormalStick;
         public InputAction @Specials => m_Wrapper.m_Player_Specials;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1085,6 +1107,9 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 @Specials.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
                 @Specials.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
                 @Specials.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecials;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1110,6 +1135,9 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                 @Specials.started += instance.OnSpecials;
                 @Specials.performed += instance.OnSpecials;
                 @Specials.canceled += instance.OnSpecials;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1273,6 +1301,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
         void OnNormals(InputAction.CallbackContext context);
         void OnNormalStick(InputAction.CallbackContext context);
         void OnSpecials(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

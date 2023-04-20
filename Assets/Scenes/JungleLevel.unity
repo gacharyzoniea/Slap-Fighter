@@ -483,16 +483,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 306083813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_PointAction: {fileID: 539076936554368686, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_MoveAction: {fileID: -4398089188878756250, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_SubmitAction: {fileID: 5042591287650317292, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_CancelAction: {fileID: -2775894837807602082, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_LeftClickAction: {fileID: -1272897335537630208, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_MiddleClickAction: {fileID: 2185016646289607397, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_RightClickAction: {fileID: 5772464147768978498, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_ScrollWheelAction: {fileID: -6965096034971143000, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 1423431351605566575, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -1288824057464703359, guid: 230a93983dceaab4e8f3622cd4b0eada, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &306083815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1935380567}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &306083816
@@ -2151,8 +2159,9 @@ GameObject:
   - component: {fileID: 1481128314}
   - component: {fileID: 1481128313}
   - component: {fileID: 1481128312}
+  - component: {fileID: 1481128315}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2192,7 +2201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
-    m_WrapAround: 0
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2202,7 +2211,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5254902}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2272,6 +2281,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481128310}
   m_CullTransparentMesh: 1
+--- !u!114 &1481128315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481128310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1511147273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,7 +2649,7 @@ GameObject:
   - component: {fileID: 1681900523}
   m_Layer: 5
   m_Name: PauseMenu
-  m_TagString: Untagged
+  m_TagString: Pause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2725,7 +2747,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4af06cd1670644fa9e82c334fd1764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameIsPaused: 0
   pauseMenuUI: {fileID: 1820619672}
+  resume: {fileID: 1935380567}
 --- !u!1 &1697956454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,7 +3248,7 @@ GameObject:
   - component: {fileID: 1935380570}
   - component: {fileID: 1935380569}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3264,7 +3288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
-    m_WrapAround: 0
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3274,7 +3298,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5254902}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5882353}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

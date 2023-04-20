@@ -15,6 +15,7 @@ public class PlayerInputScript : MonoBehaviour
     PlayerShieldScript shield;
     PlayerDashScript dash;
 
+
     void Start()
     {
         int tospawn = Random.Range(0, prefabs.Count);
@@ -31,6 +32,11 @@ public class PlayerInputScript : MonoBehaviour
         {
             movement.setMovement(context.ReadValue<Vector2>());
         }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        movement.Pause();
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -106,6 +112,10 @@ public class PlayerInputScript : MonoBehaviour
                 atk.dair();
             }
         }
-       
+    }
+
+    public void Navigate(InputAction.CallbackContext context)
+    {
+        context.ReadValue<Vector2>();
     }
 }
