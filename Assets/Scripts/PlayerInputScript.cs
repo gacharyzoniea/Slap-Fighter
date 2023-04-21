@@ -118,4 +118,36 @@ public class PlayerInputScript : MonoBehaviour
     {
         context.ReadValue<Vector2>();
     }
+
+    public void AttackStick(InputAction.CallbackContext direction)
+    {
+        Vector2 dir = direction.ReadValue<Vector2>();
+        if (atk)
+        {
+            if (!atk.moveLag && dir.y < -.3f && atk._pm.isGrounded)
+            {
+                atk.sweep();
+            }
+            else if (!atk.moveLag && Mathf.Abs(dir.x) > .5f && atk._pm.isGrounded)
+            {
+                atk.roundhouse();
+            }
+            else if (!atk.moveLag && dir.y > .3f && atk._pm.isGrounded)
+            {
+                atk.uppercut();
+            }
+            else if (!atk.moveLag && !atk._pm.isGrounded && Mathf.Abs(dir.x) > .3f)
+            {
+                atk.fair();
+            }
+            else if (!atk.moveLag && !atk._pm.isGrounded && dir.y > .5f)
+            {
+                atk.uair();
+            }
+            else if (!atk.moveLag && !atk._pm.isGrounded && dir.y < -.5f)
+            {
+                atk.dair();
+            }
+        }
+    }
 }
