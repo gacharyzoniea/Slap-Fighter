@@ -20,7 +20,10 @@ public class PlayerMovementFixed : MonoBehaviour
     public bool isGrounded;
     public float groundDrag = 5f;
     [SerializeField] private Vector3 castArea = new Vector3(0, 0, 0);
+    [SerializeField] private Vector3 castAreaPlatform = new Vector3(0, 0, 0);
     [SerializeField] private float sphereCastDistance = .2f;
+    [SerializeField] private float castDistancePlatform = 2f;
+    [SerializeField] Vector3 feetPosition;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -57,6 +60,9 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void FixedUpdate()
     {
+        feetPosition = new Vector3(transform.position.x, transform.position.y - 2.5f, transform.position.z);
+        
+        //feetPosition = transform.position - new Vector3(0, 1, 0);
         if (_canMove && _canMoveLag)
         {
             movePlayer();
@@ -107,9 +113,12 @@ public class PlayerMovementFixed : MonoBehaviour
         //}
 
             //grounded check and drag
-            if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) || 
-                Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, platformLayer))
+            if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) /*|| 
+            
+                Physics.BoxCast(transform.position, castArea, new Vector3(0, -3, 0), transform.rotation, sphereCastDistance, platformLayer)*/)
+                
                 {
+
                  isGrounded = true;
                 }
             else
@@ -205,11 +214,18 @@ public class PlayerMovementFixed : MonoBehaviour
         rbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);  
     }
 
-
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Platform"))
+        {
+            isGrounded = true;
+        }
+    }*/
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.color = new Color32(0, 255, 0, 200);
-        Gizmos.DrawWireCube(transform.position - new Vector3(0, sphereCastDistance, 0), castArea);
+        Gizmos.color = new Color32(255, 0, 0, 200);
+        //Gizmos.DrawWireCube(transform.position - new Vector3(0, sphereCastDistance, 0), castArea);
+        Gizmos.DrawWireCube(transform.position, castArea);
     }
 }

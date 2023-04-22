@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.54924077, g: 0.7805851, b: 0.77644163, a: 1}
+  m_IndirectSpecularColor: {r: 0.5492056, g: 0.78059405, b: 0.7765105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -450,7 +450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254721713}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 4.76, y: 23.4, z: -9.88}
+  m_LocalPosition: {x: 4.76, y: 24.17, z: -9.88}
   m_LocalScale: {x: 0.15, y: 1, z: 2.9277}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1859,7 +1859,7 @@ GameObject:
   - component: {fileID: 1239005608}
   m_Layer: 6
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1871,7 +1871,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239005607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e0c0f40b08d07d49ba91b3220a9f2fe, type: 3}
   m_Name: 
@@ -1879,6 +1879,7 @@ MonoBehaviour:
   _entryDirection: {x: 0, y: 1, z: 0}
   _localDirection: 0
   triggerScale: 1.25
+  _player: {fileID: 0}
 --- !u!65 &1239005609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1963,7 +1964,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239005607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.12, y: 24.1, z: -4.57}
+  m_LocalPosition: {x: 5.12, y: 24.8, z: -4.57}
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

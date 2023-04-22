@@ -14,6 +14,7 @@ public class PlatformColliderScript : MonoBehaviour
 
     BoxCollider _collisionCheckTrigger = null;
 
+    public PlayerMovementFixed _player;
 
 
     // Start is called before the first frame update
@@ -44,12 +45,69 @@ public class PlatformColliderScript : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
+        float depth = other.gameObject.transform.localScale.y;
+        if (other.gameObject.tag.Equals("Player"))
+            
+           
+        {
+
+            if (Physics.ComputePenetration(
+                _collisionCheckTrigger, transform.position, transform.rotation,
+                other, other.transform.position, other.transform.rotation, out Vector3 collisionDirection, out float pDepth
+                ))
+            {
+
+                Vector3 direction;
+                if (_localDirection)
+                {
+                    direction = transform.TransformDirection(_entryDirection.normalized);
+
+                }
+                else
+                {
+                    direction = _entryDirection;
+                }
 
 
+                float dot = Vector3.Dot(direction, collisionDirection);
+                print(dot + ", " + collisionDirection);
+                //Opposite direction
+                if (dot <= 0)
+                {
+
+                    //other.gameObject.GetComponent<PlayerMovementFixed>().isGrounded = true;
+
+                    //if (_player._playerBase.transform.localPosition.y < transform.localPosition.y)
+                    //{
+                    
+                    //Physics.IgnoreCollision(_collider, other, false);
+
+
+                    //Physics.IgnoreCollision(_collider, other, false);
+
+
+                    //}
+                    //else {Physics.IgnoreCollision(_collider, other, false); }
+
+
+
+                }
+                /*else
+                {
+                    Physics.IgnoreCollision(_collider, other, true);
+                }*/
+            }
+        }
+
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (Physics.ComputePenetration(
-            _collisionCheckTrigger, transform.position, transform.rotation,
-            other, other.transform.position, other.transform.rotation, out Vector3 collisionDirection, out float pDepth
-            ))
+               _collisionCheckTrigger, transform.position, transform.rotation,
+               other, other.transform.position, other.transform.rotation, out Vector3 collisionDirection, out float pDepth
+               ))
         {
 
             Vector3 direction;
@@ -65,8 +123,9 @@ public class PlatformColliderScript : MonoBehaviour
 
 
             float dot = Vector3.Dot(direction, collisionDirection);
+            print(dot + ", " + collisionDirection);
             //Opposite direction
-            if (dot < 0)
+            if (dot <= 0)
             {
                 //if (_player._playerBase.transform.localPosition.y < transform.localPosition.y)
                 //{
@@ -74,7 +133,7 @@ public class PlatformColliderScript : MonoBehaviour
                 //Physics.IgnoreCollision(_collider, other, false);
 
 
-                Physics.IgnoreCollision(_collider, other, false);
+                //Physics.IgnoreCollision(_collider, other, false);
 
 
                 //}
@@ -82,16 +141,10 @@ public class PlatformColliderScript : MonoBehaviour
 
 
 
+                }
             }
-            else
-            {
-                Physics.IgnoreCollision(_collider, other, true);
-            }
+
         }
-
-
-    }
-
 
     private void OnDrawGizmosSelected()
     {
