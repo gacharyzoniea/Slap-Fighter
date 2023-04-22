@@ -2,18 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseScript : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
     public GameObject pauseMenuUI;
-
+    public GameObject resume;
 
     private void Start()
     {
         Time.timeScale = 1;
+        
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -34,6 +38,8 @@ public class PauseScript : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(resume);
     }
 
     public void Resume()

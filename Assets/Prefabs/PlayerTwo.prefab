@@ -722,7 +722,9 @@ MonoBehaviour:
   gravity: -75.6
   canDouble: 0
   animator: {fileID: 0}
+  jumpAnim: {fileID: 0}
   animatedObject: {fileID: 6655720644833657628}
+  jumpObject: {fileID: 0}
   playerTransform: {fileID: 6275218546183838118}
 --- !u!114 &5808719346337832537
 MonoBehaviour:
@@ -780,13 +782,13 @@ MonoBehaviour:
   attackHeavy: {fileID: 8300000, guid: fe8fb79484f0e9549827d4204e5bc221, type: 3}
   whiff: {fileID: 8300000, guid: 4d47d257ff4412b41828cbe91cc63592, type: 3}
   attackList:
-  - {fileID: 1307653181, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  - {fileID: 1410894150, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  - {fileID: 3348707996290788042, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  - {fileID: 1410121828812402653, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  - {fileID: 4907026660722011606, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  - {fileID: 5108569231377274407, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
-  - {fileID: 1723908449793941183, guid: 85d77ab1f208dcb4c9bec891548ffa84, type: 3}
+  - {fileID: 5808719346009955358}
+  - {fileID: 5808719346418409829}
+  - {fileID: 9143916199518782185}
+  - {fileID: 4831646813105604606}
+  - {fileID: 1478858290805409269}
+  - {fileID: 1619606870594846212}
+  - {fileID: 5147679114683938460}
 --- !u!114 &8591996787089938337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,7 +802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0, z: 0}
-  _pm: {fileID: 0}
 --- !u!82 &-7552931521388902438
 AudioSource:
   m_ObjectHideFlags: 0
