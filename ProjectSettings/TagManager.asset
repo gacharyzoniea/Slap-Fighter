@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Right
-<<<<<<< HEAD
-  - Platform
-=======
-  - Pause
->>>>>>> c2b20b3954f9ae393cd89f3e1598e8d8e24bbbea
+  
+  
   layers:
   - Default
   - TransparentFX
@@ -18,7 +14,7 @@ TagManager:
   - Water
   - UI
   - platform
-  - 
+  - Pause
   - 
   - 
   - 
@@ -26,7 +22,7 @@ TagManager:
   - Hitbox
   - Shield
   - Player
-  - 
+  - Right
   - 
   - 
   - 
