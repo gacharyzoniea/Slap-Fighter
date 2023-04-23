@@ -3,23 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Right
+  - Platform
+  - Pause
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ground
   - Water
   - UI
+  - platform
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - SlideLayer
+  - Hitbox
+  - Shield
+  - Player
   - 
   - 
   - 
