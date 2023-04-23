@@ -191,6 +191,17 @@ public class PlayerMovementFixed : MonoBehaviour
             }
         }
     }
+    public void Pause()
+    {
+        if (!pauseScript.GameIsPaused)
+        {
+            pauseScript.Pause();
+        }
+        else
+        {
+            pauseScript.Resume();
+        }
+    }
 
     private void SpeedControl()
     {
