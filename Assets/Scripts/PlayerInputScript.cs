@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class PlayerInputScript : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerInputScript : MonoBehaviour
     playerAttackScript atk;
     PlayerShieldScript shield;
     PlayerDashScript dash;
-    PauseScript pauseScript;
+    bool paused = false;
 
 
     void Start()
@@ -25,12 +26,19 @@ public class PlayerInputScript : MonoBehaviour
         atk = newPlayer.GetComponent<playerAttackScript>();
         shield = newPlayer.GetComponent<PlayerShieldScript>();
         dash = newPlayer.GetComponent<PlayerDashScript>();
-        pauseScript = movement.pauseScript;
     }
+    
+    void LateUpdate() {
+        if (movement.pauseScript)
+        {
+            paused = movement.pauseScript.GameIsPaused;
+        }
+    }
+
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (movement && !pauseScript.GameIsPaused)
+        if (movement && !paused)
         {
             movement.setMovement(context.ReadValue<Vector2>());
         }
@@ -38,12 +46,13 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
-        movement.Pause();
+        if(movement)
+            movement.Pause();
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (movement && context.started && movement._canJump && !pauseScript.GameIsPaused)
+        if (movement && context.started && movement._canJump && !paused && !shield._isShielding)
         {
             if(movement.isGrounded)
             {
@@ -59,7 +68,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (dash && context.started && !pauseScript.GameIsPaused)
+        if (dash && context.started && !paused && !shield._isShielding)
         {
             dash.Dash();
         }
@@ -67,7 +76,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Shield(InputAction.CallbackContext context)
     {
-        if (shield && !pauseScript.GameIsPaused)
+        if (shield && !paused)
         {
                 if(context.ReadValue<float>() > 0 && shield._pm.isGrounded)
                 {
@@ -83,7 +92,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext attack)
     {
-        if (atk && !pauseScript.GameIsPaused)
+        if (atk && !paused && !shield._isShielding)
         {
             if (!atk.moveLag && attack.started && movement._movement.magnitude <= .05f && atk._pm.isGrounded)
             {
@@ -116,15 +125,10 @@ public class PlayerInputScript : MonoBehaviour
         }
     }
 
-    public void Navigate(InputAction.CallbackContext context)
-    {
-        context.ReadValue<Vector2>();
-    }
-
     public void AttackStick(InputAction.CallbackContext direction)
     {
         Vector2 dir = direction.ReadValue<Vector2>();
-        if (atk && !pauseScript.GameIsPaused)
+        if (atk && !paused && !shield._isShielding)
         {
             if (!atk.moveLag && dir.y < -.3f && atk._pm.isGrounded)
             {
