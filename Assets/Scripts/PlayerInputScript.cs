@@ -14,6 +14,7 @@ public class PlayerInputScript : MonoBehaviour
     playerAttackScript atk;
     PlayerShieldScript shield;
     PlayerDashScript dash;
+    PauseScript pauseScript;
 
 
     void Start()
@@ -24,11 +25,12 @@ public class PlayerInputScript : MonoBehaviour
         atk = newPlayer.GetComponent<playerAttackScript>();
         shield = newPlayer.GetComponent<PlayerShieldScript>();
         dash = newPlayer.GetComponent<PlayerDashScript>();
+        pauseScript = GameObject.FindGameObjectWithTag(ConstantLabels.PAUSE).GetComponent<PauseScript>();
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (movement)
+        if (movement && !pauseScript.GameIsPaused)
         {
             movement.setMovement(context.ReadValue<Vector2>());
         }
@@ -41,7 +43,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (movement && context.started && movement._canJump)
+        if (movement && context.started && movement._canJump && !pauseScript.GameIsPaused)
         {
             if(movement.isGrounded)
             {
@@ -57,7 +59,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (dash && context.started)
+        if (dash && context.started && !pauseScript.GameIsPaused)
         {
             dash.Dash();
         }
@@ -65,7 +67,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Shield(InputAction.CallbackContext context)
     {
-        if (shield)
+        if (shield && !pauseScript.GameIsPaused)
         {
                 if(context.ReadValue<float>() > 0 && shield._pm.isGrounded)
                 {
@@ -81,7 +83,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext attack)
     {
-        if (atk)
+        if (atk && !pauseScript.GameIsPaused)
         {
             if (!atk.moveLag && attack.started && movement._movement.magnitude <= .05f && atk._pm.isGrounded)
             {
@@ -122,7 +124,7 @@ public class PlayerInputScript : MonoBehaviour
     public void AttackStick(InputAction.CallbackContext direction)
     {
         Vector2 dir = direction.ReadValue<Vector2>();
-        if (atk)
+        if (atk && !pauseScript.GameIsPaused)
         {
             if (!atk.moveLag && dir.y < -.3f && atk._pm.isGrounded)
             {
