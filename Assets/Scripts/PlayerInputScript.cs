@@ -25,7 +25,7 @@ public class PlayerInputScript : MonoBehaviour
         atk = newPlayer.GetComponent<playerAttackScript>();
         shield = newPlayer.GetComponent<PlayerShieldScript>();
         dash = newPlayer.GetComponent<PlayerDashScript>();
-        pauseScript = GameObject.FindGameObjectWithTag(ConstantLabels.PAUSE).GetComponent<PauseScript>();
+        pauseScript = movement.pauseScript;
     }
 
     public void Move(InputAction.CallbackContext context)

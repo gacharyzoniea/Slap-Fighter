@@ -44,7 +44,7 @@ public class PlayerMovementFixed : MonoBehaviour
     private InputActionMap player;
     public Transform playerTransform;
     Rigidbody rbody;
-    PauseScript pauseScript;
+    public PauseScript pauseScript;
 
 
     private void Awake()
