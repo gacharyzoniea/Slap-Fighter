@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerManagerScript : MonoBehaviour
 {
-    private List<PlayerInput> players = new List<PlayerInput>();
+    public List<PlayerInput> players = new List<PlayerInput>();
     [SerializeField]
     private List<Transform> startingPoints;
     [SerializeField]
