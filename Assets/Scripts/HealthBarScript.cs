@@ -1,30 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthBarScript : MonoBehaviour
 {
-    public Slider slider;
+    public Image _bg;
+    
+    public int healthValue = 0;
+    private float healthDiv = 0;
+    private int healthmax = 999;
     public bool assigned = false;
+    [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] private Color fullColor;
+    [SerializeField] private Color lowColor;
+
+
+    void Update()
+    {
+        setColor();
+        healthText.text = healthValue + "%";
+    }
+
+    private void setColor()
+    {
+        healthDiv = (float)healthValue / 999;
+        _bg.color = Color.Lerp( fullColor, lowColor, healthDiv);
+    }
 
     public void assign()
     {
         assigned = true;
     }
-    public void SetMaxHealth(int health)
-    {
-        slider.maxValue = health;
-        slider.value = health;
-    }
 
     public void setHealth(int health)
     {
-        slider.value = health;
+        healthValue = health;
     }
 
-    public void takeHealth(int damage)
+    public void takeDamage(int damage)
     {
-        slider.value -= damage;
+        if(healthValue < healthmax)
+        {
+            healthValue += damage;
+        }
+        else
+        {
+            healthValue = 999;
+        }
     }
 }
