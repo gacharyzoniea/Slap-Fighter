@@ -46,7 +46,8 @@ public class PlayerMovementFixed : MonoBehaviour
     Rigidbody rbody;
     PauseScript pauseScript;
 
-
+    public float changeY;
+    public bool onPlatform;
     private void Awake()
     {
         animator = animatedObject.GetComponent<Animator>();
@@ -62,6 +63,19 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //changeY = getYVel();
+        //updateY(changeY);
+
+        if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) || onPlatform)
+                
+                {
+
+                 isGrounded = true;
+                }
+            else
+        {
+            isGrounded = false;
+        }
         feetPosition = new Vector3(transform.position.x, transform.position.y - 2.5f, transform.position.z);
         
         //feetPosition = transform.position - new Vector3(0, 1, 0);
@@ -82,6 +96,7 @@ public class PlayerMovementFixed : MonoBehaviour
 
     private void Update()
     {
+        
         if (isGrounded)
         {
             canDouble = true;
@@ -115,9 +130,7 @@ public class PlayerMovementFixed : MonoBehaviour
         //}
 
             //grounded check and drag
-            if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) /*|| 
-            
-                Physics.BoxCast(transform.position, castArea, new Vector3(0, -3, 0), transform.rotation, sphereCastDistance, platformLayer)*/)
+           /* if (Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation, sphereCastDistance, groundLayer) || onPlatform)
                 
                 {
 
@@ -126,7 +139,7 @@ public class PlayerMovementFixed : MonoBehaviour
             else
         {
             isGrounded = false;
-        }
+        }*/
            // isGrounded = Physics.BoxCast(transform.position, castArea, Vector3.down, transform.rotation,sphereCastDistance, groundLayer);
         if (isGrounded)
         {
@@ -240,5 +253,34 @@ public class PlayerMovementFixed : MonoBehaviour
         Gizmos.color = new Color32(255, 0, 0, 200);
         //Gizmos.DrawWireCube(transform.position - new Vector3(0, sphereCastDistance, 0), castArea);
         Gizmos.DrawWireCube(transform.position, castArea);
+    }
+
+    void updateY(float y)
+    {
+        
+        if (checkVelChangeY(y))
+        {
+            isGrounded = true;
+            onPlatform = true;
+        }
+        else
+        {
+            onPlatform = false;
+        }
+
+        
+        
+    }
+    float getYVel()
+    {
+        return rbody.velocity.y;
+    }
+    bool checkVelChangeY(float yVel)
+    {
+        if (rbody.velocity.y == yVel)
+        {
+            return true;
+        }
+        return false;
     }
 }
