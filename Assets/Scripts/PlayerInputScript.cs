@@ -15,6 +15,7 @@ public class PlayerInputScript : MonoBehaviour
     playerAttackScript atk;
     PlayerShieldScript shield;
     PlayerDashScript dash;
+    PlayerPlatformInteractScript platDrop;
     bool paused = false;
 
 
@@ -26,6 +27,7 @@ public class PlayerInputScript : MonoBehaviour
         atk = newPlayer.GetComponent<playerAttackScript>();
         shield = newPlayer.GetComponent<PlayerShieldScript>();
         dash = newPlayer.GetComponent<PlayerDashScript>();
+        platDrop = newPlayer.GetComponent<PlayerPlatformInteractScript>();
     }
     
     void LateUpdate() {
@@ -71,6 +73,14 @@ public class PlayerInputScript : MonoBehaviour
         if (dash && context.started && !paused && !shield._isShielding)
         {
             dash.Dash();
+        }
+    }
+
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if (movement && context.started && !paused && !shield._isShielding)
+        {
+            platDrop.DropThrough();
         }
     }
 

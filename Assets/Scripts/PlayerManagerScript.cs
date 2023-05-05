@@ -14,12 +14,15 @@ public class PlayerManagerScript : MonoBehaviour
     //private GameObject[] playerList;
     public GameObject[] healthList;
 
+    public GameMatchManager _gmm;
+
 
     private PlayerInputManager playerInputManager;
 
     private void Awake()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
+        
         //healthList = GameObject.FindGameObjectsWithTag("Right");
     }
 
@@ -38,6 +41,9 @@ public class PlayerManagerScript : MonoBehaviour
 
         Transform playerParent = player.transform;
         playerParent.position = startingPoints[players.Count - 1].position;
+
+        _gmm._players.Add(player.gameObject);
+
     }
 
     private void Update()
@@ -47,4 +53,6 @@ public class PlayerManagerScript : MonoBehaviour
         //    player.playerAttackScript()
         //}
     }
+
+    
 }

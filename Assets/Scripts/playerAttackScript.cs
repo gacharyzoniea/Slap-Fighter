@@ -13,6 +13,7 @@ public class playerAttackScript : MonoBehaviour
     Animator animator;
     public bool moveLag = false;
     public HealthBarScript healthBar;
+    public LivesManager stock;
     public int maxHealth = 100;
 
     private InputAction _attack;
@@ -33,10 +34,13 @@ public class playerAttackScript : MonoBehaviour
 
     [SerializeField] private Collider[] attackList;
     private GameObject[] healthBarList;
+    private GameObject[] scoreList;
+
 
     private void Awake()
     {
         healthBarList = GameObject.FindGameObjectsWithTag("Right");
+        scoreList = GameObject.FindGameObjectsWithTag("ScoreRight");
         _source = this.GetComponent<AudioSource>();
         //playerMovement = new SlapFighter();
         //if (healthBar == null)
@@ -53,19 +57,10 @@ public class playerAttackScript : MonoBehaviour
         _pm = GetComponent<PlayerMovementFixed>();
         _ds = GetComponent<PlayerDashScript>();
         animator = _pm.animator;
-        if(healthBar == null)
-        {
-            foreach(GameObject bar in healthBarList)
-            {
-                if (bar.GetComponent<HealthBarScript>().assigned == false)
-                {
-                    print("first");
-                    bar.GetComponent<HealthBarScript>().assign();
-                    healthBar = bar.GetComponent<HealthBarScript>();
-                    break;
-                }
-            }
-        }
+        findStockScore();
+        findHealthBar();
+        
+        
     }
 
     // Update is called once per frame
@@ -279,6 +274,66 @@ public class playerAttackScript : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         _source.PlayOneShot(whiff);
+    }
+    IEnumerator Respawn()
+    {
+        //this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        _pm.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        transform.position = new Vector3(8, 45, 0);
+        yield return new WaitForSeconds(0.2f);
+        //this.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        _pm.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("BlastZone") && stock.stocks > 0)
+        {
+            transform.position = new Vector3(8, 45, 0);
+            _pm.enabled = false;
+            stock.stocks--;
+            if (stock.stocks > 0)
+            {
+                StartCoroutine(Respawn());
+            }
+        }
+    }
+
+    private void findHealthBar()
+    {
+        if (healthBar == null)
+        {
+            foreach (GameObject bar in healthBarList)
+            {
+                if (bar.GetComponent<HealthBarScript>().assigned == false)
+                {
+                    print("first");
+                    bar.GetComponent<HealthBarScript>().assign();
+                    healthBar = bar.GetComponent<HealthBarScript>();
+                    break;
+                }
+            }
+        }
+    }
+
+    private void findStockScore()
+    {
+        if (stock == null)
+        {
+            foreach (GameObject score in scoreList)
+            {
+                if (score.GetComponent<LivesManager>().assigned == false)
+                {
+                    print("first stock score");
+                    score.GetComponent<LivesManager>().assign();
+                    stock = score.GetComponent<LivesManager>();
+                    stock._player = this.gameObject;
+                    stock._playerInput = this.gameObject.GetComponent<PlayerInput>();
+                    break;
+                }
+            }
+        }
     }
 
 }

@@ -9,7 +9,9 @@ using TMPro;
 public class HealthBarScript : MonoBehaviour
 {
     public Image _bg;
-    
+
+
+    public int stocks = 2;
     public int healthValue = 0;
     private float healthDiv = 0;
     private int healthmax = 999;
@@ -18,11 +20,38 @@ public class HealthBarScript : MonoBehaviour
     [SerializeField] private Color fullColor;
     [SerializeField] private Color lowColor;
 
+    public GameObject stockScore;
+
+
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
         setColor();
         healthText.text = healthValue + "%";
+
+        if (stockScore != null)
+        {
+            Transform stockTransform = stockScore.transform.GetChild(0);
+            Transform stock1Transform = stockScore.transform.GetChild(1);
+            GameObject stockGO = stockTransform.gameObject;
+            GameObject stock1GO = stock1Transform.gameObject;
+
+            if (stocks >= 2)
+            {
+                stock1GO.SetActive(true);
+                stockGO.SetActive(true);
+
+            }
+            if (stocks <= 1)
+            {
+                stockGO.SetActive(true);
+            }
+            
+        }
     }
 
     private void setColor()
@@ -52,4 +81,5 @@ public class HealthBarScript : MonoBehaviour
             healthValue = 999;
         }
     }
+
 }

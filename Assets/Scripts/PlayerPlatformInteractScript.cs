@@ -44,6 +44,14 @@ public class PlayerPlatformInteractScript : MonoBehaviour
 
     }
 
+    public void DropThrough()
+    {
+        if (!_playerAttackScript.moveLag && !pm._isDashing)
+        {
+            StartCoroutine(endLag(0.8f));
+        }
+    }
+
     IEnumerator endLag(float endlag)
     {
         Physics.IgnoreLayerCollision(12, platformLayer, true);
