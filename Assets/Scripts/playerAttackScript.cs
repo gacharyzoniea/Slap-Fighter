@@ -66,7 +66,6 @@ public class playerAttackScript : MonoBehaviour
                 }
             }
         }
-        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -231,8 +230,9 @@ public class playerAttackScript : MonoBehaviour
             {
                 continue;
             }
-            c.transform.root.GetComponent<playerAttackScript>().healthBar.takeHealth(damage);
-            Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>());
+            HealthBarScript percent = c.transform.root.GetComponent<playerAttackScript>().healthBar;
+            percent.takeDamage(damage);
+            Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>(), percent);
 
         }
     }
@@ -254,16 +254,25 @@ public class playerAttackScript : MonoBehaviour
             if (c.transform.root == transform)
                 continue;
 
-            c.transform.root.GetComponent<playerAttackScript>().healthBar.takeHealth(damage);
-            Knockback(dir, force, c.transform.root.GetComponent<Rigidbody>());
+            HealthBarScript percent = c.transform.root.GetComponent<playerAttackScript>().healthBar;
+            percent.takeDamage(damage);
+            Knockback(dir, force, c.transform.root.GetComponent<Rigidbody>(), percent);
 
         }
     }
 
-    private void Knockback(Vector3 dir, float force, Rigidbody rbody)
+    private void Knockback(Vector3 dir, float force, Rigidbody rbody, HealthBarScript percent)
     {
+            float kb;
             rbody.velocity = Vector3.zero;
-            rbody.AddForce(dir * force, ForceMode.VelocityChange);
+            if (percent.healthValue > 350) { 
+            kb = force * percent.healthValue/400;
+            }
+            else
+            {
+            kb = force;
+            }
+            rbody.AddForce(dir * kb, ForceMode.VelocityChange);
     }
 
     IEnumerator SwooshSound(float wait)
