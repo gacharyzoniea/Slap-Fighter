@@ -2430,6 +2430,7 @@ GameObject:
   - component: {fileID: 8512185073438205781}
   - component: {fileID: -3990789193660532628}
   - component: {fileID: 830922770845171983}
+  - component: {fileID: -4807410471203183215}
   m_Layer: 12
   m_Name: PlayerOne
   m_TagString: Player
@@ -2773,16 +2774,19 @@ MonoBehaviour:
   isGrounded: 0
   groundDrag: 10
   castArea: {x: 2.86, y: 0.78, z: 2}
+  castAreaPlatform: {x: 0, y: 0, z: 0}
   sphereCastDistance: 2.68
+  castDistancePlatform: 2
+  feetPosition: {x: 0, y: 0, z: 0}
   jumpForce: 60
   airMultiplier: 12.2
   gravity: -75.6
   canDouble: 0
   animator: {fileID: 0}
-  jumpAnim: {fileID: 0}
   animatedObject: {fileID: 919132148964174655}
-  jumpObject: {fileID: 0}
   playerTransform: {fileID: 543450652682416517}
+  changeY: 0
+  onPlatform: 0
 --- !u!114 &1498035834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2955,6 +2959,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0, z: 0}
+--- !u!114 &-4807410471203183215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600801440794128806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ce93f53c013694fb59ff0f62147b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pm: {fileID: 1498035826}
+  lastY: 0
+  curY: 0
 --- !u!1 &8670540289560050497
 GameObject:
   m_ObjectHideFlags: 0

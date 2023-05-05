@@ -7,6 +7,8 @@ TagManager:
   - Right
   - Platform
   - Pause
+  - BlastZone
+  - ScoreRight
   layers:
   - Default
   - TransparentFX

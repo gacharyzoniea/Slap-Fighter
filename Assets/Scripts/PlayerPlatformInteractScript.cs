@@ -12,6 +12,7 @@ public class PlayerPlatformInteractScript : MonoBehaviour
     int hitboxLayer = 12;
     public Vector3 playerPos;
     playerAttackScript _playerAttackScript;
+    private PlayerMovementFixed pm;
 
     //private PlayerMovementFixed _pm;
     //private InputAction _move;
@@ -21,6 +22,7 @@ public class PlayerPlatformInteractScript : MonoBehaviour
         // _pm = GetComponent<PlayerMovementFixed>();
         // _move = player.FindAction("Move");
         _playerAttackScript = GetComponent<playerAttackScript>();
+        pm = GetComponent<PlayerMovementFixed>();
 
     }
 
@@ -29,7 +31,7 @@ public class PlayerPlatformInteractScript : MonoBehaviour
     {
         
 
-            if (Input.GetKeyUp(KeyCode.S) && !_playerAttackScript.moveLag)
+            if (Input.GetKeyUp(KeyCode.S) && !_playerAttackScript.moveLag && !pm._isDashing)
             {
 
             //Vector3.Slerp(playerPos, new Vector3(playerPos.x, playerPos.y - 2f, playerPos.z), 0.01f);
@@ -40,6 +42,14 @@ public class PlayerPlatformInteractScript : MonoBehaviour
             }
             
 
+    }
+
+    public void DropThrough()
+    {
+        if (!_playerAttackScript.moveLag && !pm._isDashing)
+        {
+            StartCoroutine(endLag(0.8f));
+        }
     }
 
     IEnumerator endLag(float endlag)
