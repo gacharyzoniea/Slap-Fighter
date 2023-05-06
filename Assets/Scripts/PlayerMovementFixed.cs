@@ -57,8 +57,11 @@ public class PlayerMovementFixed : MonoBehaviour
 
     void Start()
     {
-        rbody = transform.root.GetComponent<Rigidbody>();
-        pauseScript = GameObject.FindGameObjectWithTag(ConstantLabels.PAUSE).GetComponent<PauseScript>();
+        rbody = GetComponent<Rigidbody>();
+        if(GameObject.FindGameObjectWithTag(ConstantLabels.PAUSE).GetComponent<PauseScript>() != null)
+        {
+            pauseScript = GameObject.FindGameObjectWithTag(ConstantLabels.PAUSE).GetComponent<PauseScript>();
+        }
     }
 
     private void FixedUpdate()
