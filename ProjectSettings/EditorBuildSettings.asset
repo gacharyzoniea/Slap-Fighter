@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7ef58537afc856749b3b6a342113d1de
   - enabled: 1
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: 184d67082ad5d254987fd09105c4dc37
+  - enabled: 1
+    path: Assets/Scenes/StageSelect.unity
+    guid: 4a58a1f50ace6f0468b6a27488f66885
+  - enabled: 1
+    path: Assets/Scenes/LavaLevel.unity
+    guid: c86b8f9f327c67543ad90adfddda1a0c
+  - enabled: 1
     path: Assets/Scenes/JungleLevel.unity
     guid: 4e2c89270e9b8b5438cc39aef40a1eaa
   m_configObjects:

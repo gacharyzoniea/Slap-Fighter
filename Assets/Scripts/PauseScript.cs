@@ -50,7 +50,8 @@ public class PauseScript : MonoBehaviour
     }
 
     public void LoadMenu()
-    {
+    { 
+        Destroy(GameObject.Find("PlayerConfigurationManager"));
         SceneManager.LoadScene("MainMenu");
     }
 }

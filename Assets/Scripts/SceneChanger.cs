@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public GameObject toggle;
     private void Start()
     {
         Time.timeScale = 1.0f;
@@ -14,7 +15,7 @@ public class SceneChanger : MonoBehaviour
 
     public void loadGame()
     {
-        SceneManager.LoadScene("JungleLevel");
+        SceneManager.LoadScene("CharacterSelect");
     }
 
     public void exitGame()
@@ -25,6 +26,19 @@ public class SceneChanger : MonoBehaviour
     public void loadMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void loadJungle()
+    {
+        SceneManager.LoadScene("JungleLevel");
+    }
+    public void loadLava()
+    {
+        SceneManager.LoadScene("LavaLevel");
+    }
+    public void loadWater()
+    {
+        SceneManager.LoadScene("WaterLevel");
     }
 }
 
