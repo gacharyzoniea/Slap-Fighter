@@ -2785,6 +2785,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   animatedObject: {fileID: 919132148964174655}
   playerTransform: {fileID: 543450652682416517}
+  pauseScript: {fileID: 0}
   changeY: 0
   onPlatform: 0
 --- !u!114 &1498035834
@@ -2836,6 +2837,7 @@ MonoBehaviour:
   _pm: {fileID: 0}
   moveLag: 0
   healthBar: {fileID: 0}
+  stock: {fileID: 0}
   maxHealth: 100
   attackLength: 0.4
   attackhit: 0.4
@@ -2850,6 +2852,8 @@ MonoBehaviour:
   - {fileID: 4907026660722011606}
   - {fileID: 5108569231377274407}
   - {fileID: 1723908449793941183}
+  mainColor: {fileID: 2100000, guid: f358a611b4000a144bc96e8977e7fdbf, type: 2}
+  altColor: {fileID: 2100000, guid: 2cd1a674a1b8c4244a9ad3ec053862ca, type: 2}
 --- !u!82 &-3990789193660532628
 AudioSource:
   m_ObjectHideFlags: 0

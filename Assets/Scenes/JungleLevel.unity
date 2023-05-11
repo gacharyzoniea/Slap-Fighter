@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &49208585 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e5b0326a8a439f64cadd59bc21e0a3fa, type: 3}
-  m_PrefabInstance: {fileID: 813114092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &91542475
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,9 +479,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerWinText: {fileID: 1297191653}
   menuButton: {fileID: 2048484213}
-  players: []
   _players: []
-  winnerModel: {fileID: 49208585}
+  winnerModel: {fileID: 0}
+  winnerColMain: {fileID: 0}
+  winnerColAlt: {fileID: 0}
 --- !u!1 &228615627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,6 +1790,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e5b0326a8a439f64cadd59bc21e0a3fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8134667007107732436, guid: e5b0326a8a439f64cadd59bc21e0a3fa, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8134667007107732436, guid: e5b0326a8a439f64cadd59bc21e0a3fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -8134667007107732436, guid: e5b0326a8a439f64cadd59bc21e0a3fa, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e5b0326a8a439f64cadd59bc21e0a3fa, type: 3}
       propertyPath: m_Name

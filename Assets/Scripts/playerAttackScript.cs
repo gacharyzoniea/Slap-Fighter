@@ -36,6 +36,9 @@ public class playerAttackScript : MonoBehaviour
     private GameObject[] healthBarList;
     private GameObject[] scoreList;
 
+    public Material mainColor;
+    public Material altColor;
+
 
     private void Awake()
     {
@@ -278,9 +281,9 @@ public class playerAttackScript : MonoBehaviour
     IEnumerator Respawn()
     {
         //this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        _pm.enabled = false;
+        //_pm.enabled = false;
         yield return new WaitForSeconds(0.5f);
-        transform.position = new Vector3(8, 45, 0);
+        //transform.position = new Vector3(8, 45, 0);
         yield return new WaitForSeconds(0.2f);
         //this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         _pm.enabled = true;

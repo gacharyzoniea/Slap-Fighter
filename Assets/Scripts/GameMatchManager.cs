@@ -9,13 +9,13 @@ public class GameMatchManager : MonoBehaviour
 
     public Text playerWinText;
     public Button menuButton;
-    public List<PlayerInput> players = new List<PlayerInput>();
+    //public List<PlayerInput> players = new List<PlayerInput>();
     public List<GameObject> _players = new List<GameObject>();
     //public int playerNum;
     public GameObject winnerModel;
 
-    Material winnerColMain;
-    Material winnerColAlt;
+    public Material winnerColMain;
+    public Material winnerColAlt;
 
     // Start is called before the first frame update
     void Start()
@@ -36,23 +36,31 @@ public class GameMatchManager : MonoBehaviour
 
     public void DeclareWinner()
     {
-        
-        foreach (GameObject player in _players)
+        print("Winner!");
+        /* foreach (GameObject player in _players)
+         {
+             GameObject winnerPlayer = player.gameObject;
+             winnerColMain = winnerPlayer.GetComponent<SkinnedMeshRenderer>().materials[0];
+             winnerColAlt = winnerPlayer.GetComponent<SkinnedMeshRenderer>().materials[1];
+             break;
+         }*/
+        if (_players.Count == 1)
         {
-            GameObject winnerPlayer = player.gameObject;
-            winnerColMain = winnerPlayer.GetComponent<SkinnedMeshRenderer>().materials[0];
-            winnerColAlt = winnerPlayer.GetComponent<SkinnedMeshRenderer>().materials[1];
-            break;
+            winnerModel = _players[0].gameObject;
         }
-        winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0] = winnerColMain;
-        winnerModel.GetComponent<SkinnedMeshRenderer>().materials[1] = winnerColAlt;
+        winnerColMain = winnerModel.GetComponent<playerAttackScript>().mainColor;
+        winnerColAlt = winnerModel.GetComponent<playerAttackScript>().altColor;
+
+        winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
+        winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
 
     }
 
     public void RemovePlayer(GameObject player)
     {
         _players.Remove(player);
-        if (_players.Count == 1)
+        print(_players.Count);
+        if (_players.Count <= 1)
         {
             DeclareWinner();
         }
