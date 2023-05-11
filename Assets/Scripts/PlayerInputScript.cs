@@ -18,18 +18,62 @@ public class PlayerInputScript : MonoBehaviour
     PlayerPlatformInteractScript platDrop;
     bool paused = false;
 
+    private PlayerConfiguration playerConfig;
+    private SlapFighter controls;
+    [SerializeField]
+    private SkinnedMeshRenderer playerMesh;
 
-    void Start()
+    private void Awake()
     {
-        int tospawn = Random.Range(0, prefabs.Count);
-        newPlayer = GameObject.Instantiate(prefabs[tospawn], prefabs[tospawn].transform.position, transform.rotation);
-        movement = newPlayer.GetComponent<PlayerMovementFixed>();
-        atk = newPlayer.GetComponent<playerAttackScript>();
-        shield = newPlayer.GetComponent<PlayerShieldScript>();
-        dash = newPlayer.GetComponent<PlayerDashScript>();
-        platDrop = newPlayer.GetComponent<PlayerPlatformInteractScript>();
+        movement = GetComponent<PlayerMovementFixed>();
+        atk = GetComponent<playerAttackScript>();
+        shield = GetComponent<PlayerShieldScript>();
+        dash = GetComponent<PlayerDashScript>();
+        controls = new SlapFighter();
     }
+
+
+
+    public void InitializePlayer(PlayerConfiguration pc)
+    {
+        playerConfig = pc;
+        playerMesh.material = pc.playerMaterial;
+        playerConfig.Input.onActionTriggered += Input_onActionTriggered;
+    }
+
+    private void Input_onActionTriggered(InputAction.CallbackContext obj)
+    {
     
+        if(obj.action.name == controls.Player.Move.name)
+        {
+            Move(obj);
+        }
+        else if(obj.action.name == controls.Player.Normals.name)
+        {
+            Attack(obj);
+        }
+        else if(obj.action.name == controls.Player.NormalStick.name)
+        {
+            AttackStick(obj);
+        }
+        else if(obj.action.name == controls.Player.Jump.name)
+        {
+            Jump(obj);
+        }
+        else if(obj.action.name == controls.Player.Pause.name)
+        {
+            Pause(obj);
+        }
+        else if(obj.action.name == controls.Player.Dash.name)
+        {
+            Dash(obj);
+        }
+        else if(obj.action.name == controls.Player.Shield.name)
+        {
+            Shield(obj);
+        }
+    }
+
     void LateUpdate() {
         if (movement.pauseScript)
         {

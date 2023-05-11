@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 8512185073438205781}
   - component: {fileID: -3990789193660532628}
   - component: {fileID: 830922770845171983}
-  - component: {fileID: -4807410471203183215}
+  - component: {fileID: -708985932323457979}
   m_Layer: 12
   m_Name: PlayerOne
   m_TagString: Player
@@ -2963,7 +2963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0, z: 0}
---- !u!114 &-4807410471203183215
+--- !u!114 &-708985932323457979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2972,12 +2972,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8600801440794128806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26ce93f53c013694fb59ff0f62147b86, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e2a64ea98686d545a52666cc767c256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1498035826}
-  lastY: 0
-  curY: 0
+  startingPoints: []
+  playerLayers: []
+  prefabs: []
+  playerMesh: {fileID: 1088705030227982914}
 --- !u!1 &8670540289560050497
 GameObject:
   m_ObjectHideFlags: 0
