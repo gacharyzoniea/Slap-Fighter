@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LavaLevel.unity
     guid: c86b8f9f327c67543ad90adfddda1a0c
   - enabled: 1
+    path: Assets/Scenes/LavaLevelMonster.unity
+    guid: 2c013ee971752814ab98cfe9c9149add
+  - enabled: 1
     path: Assets/Scenes/JungleLevel.unity
     guid: 4e2c89270e9b8b5438cc39aef40a1eaa
   m_configObjects:

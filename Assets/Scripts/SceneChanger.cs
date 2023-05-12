@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneChanger : MonoBehaviour
 {
-    public GameObject toggle;
+    public Toggle toggle;
     private void Start()
     {
         Time.timeScale = 1.0f;
@@ -34,11 +35,19 @@ public class SceneChanger : MonoBehaviour
     }
     public void loadLava()
     {
-        SceneManager.LoadScene("LavaLevel");
+        if (toggle.isOn)
+        {
+            SceneManager.LoadScene("LavaLevelMonster");
+        }
+        else
+        {
+            SceneManager.LoadScene("LavaLevel");
+        }
     }
     public void loadWater()
     {
         SceneManager.LoadScene("WaterLevel");
     }
+
 }
 
