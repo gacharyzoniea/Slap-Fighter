@@ -188,6 +188,10 @@ public class playerAttackScript : MonoBehaviour
     {
         //moveLag = true;
         aerialLag = true;
+        if (_pm.isGrounded)
+        {
+            StartCoroutine(landingLag());
+        }
         yield return new WaitForSeconds(endlag);
         aerialLag = false;
         //moveLag = false;
@@ -195,7 +199,16 @@ public class playerAttackScript : MonoBehaviour
 
     IEnumerator landingLag()
     {
-        StopCoroutine("endLagAerial");
+        //opAllCoroutines();
+        animator.SetTrigger("Landing");
+        yield return new WaitForSeconds(0.2f);
+        aerialLag = false;
+        moveLag = false;
+    }
+
+    IEnumerator landingLag(Coroutine aerial)
+    {
+        StopCoroutine(aerial);
         animator.SetTrigger("Landing");
         yield return new WaitForSeconds(0.2f);
         aerialLag = false;
