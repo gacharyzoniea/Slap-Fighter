@@ -2837,6 +2837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pm: {fileID: 0}
   moveLag: 0
+  aerialLag: 0
   healthBar: {fileID: 0}
   stock: {fileID: 0}
   maxHealth: 100

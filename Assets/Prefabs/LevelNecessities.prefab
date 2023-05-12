@@ -314,9 +314,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerWinText: {fileID: 6873546858679467836}
   menuButton: {fileID: 6873546859539828396}
-  players: []
   _players: []
   winnerModel: {fileID: 6026616345712194148}
+  winnerColMain: {fileID: 0}
+  winnerColAlt: {fileID: 0}
 --- !u!1 &6873546857602517010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1168,7 @@ MonoBehaviour:
   assigned: 0
   _player: {fileID: 0}
   _gmm: {fileID: 6873546857601614589}
-  _playerManager: {fileID: 6873546859227230481}
+  _playerManager: {fileID: 0}
   _playerNum: 0
   _playerInput: {fileID: 0}
 --- !u!1 &6873546858350855798
@@ -2271,7 +2272,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6873546859227230483}
-  - component: {fileID: 6873546859227230481}
   - component: {fileID: 6873546859227230482}
   m_Layer: 0
   m_Name: SM
@@ -2294,26 +2294,6 @@ Transform:
   m_Father: {fileID: 4690607596525904212}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6873546859227230481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6873546859227230494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5397ad5be1b9a24ca0c9305adc068a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: []
-  startingPoints:
-  - {fileID: 6873546858204595875}
-  - {fileID: 6873546858795334044}
-  healthList:
-  - {fileID: 6873546859310192287}
-  - {fileID: 0}
-  _gmm: {fileID: 6873546857601614589}
 --- !u!114 &6873546859227230482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2592,7 +2572,7 @@ MonoBehaviour:
   assigned: 0
   _player: {fileID: 0}
   _gmm: {fileID: 6873546857601614589}
-  _playerManager: {fileID: 6873546859227230481}
+  _playerManager: {fileID: 0}
   _playerNum: 0
   _playerInput: {fileID: 0}
 --- !u!1 &6873546859310192287
