@@ -96,6 +96,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         rbody.AddForce(Vector3.down * gravity * Time.deltaTime);
+        
     }
     private void MoveCharacter()
     {

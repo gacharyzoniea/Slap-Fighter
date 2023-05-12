@@ -12,6 +12,7 @@ public class playerAttackScript : MonoBehaviour
     private PlayerDashScript _ds;
     Animator animator;
     public bool moveLag = false;
+    public bool aerialLag = false;
     public HealthBarScript healthBar;
     public LivesManager stock;
     public int maxHealth = 100;
@@ -71,7 +72,7 @@ public class playerAttackScript : MonoBehaviour
     {
         moveVal = _pm._movement.magnitude;
         
-        if (moveLag)
+        if (moveLag || aerialLag)
         {
             _pm._canMoveLag = false;
             _pm._canJump = false;
@@ -82,6 +83,11 @@ public class playerAttackScript : MonoBehaviour
             _pm._canMoveLag = true;
             _pm._canJump = true;
             _ds.canDash = true;
+        }
+
+        if (_pm.isGrounded && aerialLag)
+        {
+            StartCoroutine(landingLag());
         }
         /**
          * ATTACKS (normals)
@@ -154,20 +160,20 @@ public class playerAttackScript : MonoBehaviour
     {
         animator.SetTrigger("Uair");
         StartCoroutine(attackBox(attackList[4], .4f, 2, 11, new Vector3(0, 1, 0), attackLight));
-        StartCoroutine(endLag(.75f));
+        StartCoroutine(endLagAerial(.75f));
     }
 
     public void fair()
     {
         animator.SetTrigger("Fair");
         StartCoroutine(attackBox(attackList[5], .35f, 2, 10, new Vector3(.1f, 1, 0), attackLight));
-        StartCoroutine(endLag(.4f));
+        StartCoroutine(endLagAerial(.4f));
     }
     public void dair()
     {
         animator.SetTrigger("Dair");
         StartCoroutine(attackBox(attackList[6], .35f, 2, 10, new Vector3(0, -1, 0), attackHeavy));
-        StartCoroutine(endLag(.75f));
+        StartCoroutine(endLagAerial(.75f));
     }
 
 
@@ -175,6 +181,24 @@ public class playerAttackScript : MonoBehaviour
     {
         moveLag = true;
         yield return new WaitForSeconds(endlag);
+        moveLag = false;
+    }
+
+    IEnumerator endLagAerial(float endlag)
+    {
+        //moveLag = true;
+        aerialLag = true;
+        yield return new WaitForSeconds(endlag);
+        aerialLag = false;
+        //moveLag = false;
+    }
+
+    IEnumerator landingLag()
+    {
+        StopCoroutine("endLagAerial");
+        animator.SetTrigger("Landing");
+        yield return new WaitForSeconds(0.2f);
+        aerialLag = false;
         moveLag = false;
     }
 

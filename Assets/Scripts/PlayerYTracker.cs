@@ -23,7 +23,7 @@ public class PlayerYTracker : MonoBehaviour
     void FixedUpdate()
     {
         curY = transform.position.y;
-        if (curY != yvels.Last.Value)
+        if (curY != yvels.Last.Value || curY - yvels.Last.Value >= 0.5f)
         {
             pm.onPlatform = false;
         }
@@ -31,8 +31,10 @@ public class PlayerYTracker : MonoBehaviour
         {
             pm.onPlatform = true;
         }
-        else if (curY == yvels.Last.Value)
-        {
+
+        else if (curY == yvels.Last.Value || curY - yvels.Last.Value <= 0.5f)
+        //else if (curY - yvels.Last.Value <= 0.1f)
+                {
             pm.onPlatform = true;
         }
         else
