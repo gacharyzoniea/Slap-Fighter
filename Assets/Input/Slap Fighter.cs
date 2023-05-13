@@ -365,7 +365,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NormalStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -376,7 +376,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NormalStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -387,7 +387,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NormalStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -398,7 +398,7 @@ public class @SlapFighter : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""NormalStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true

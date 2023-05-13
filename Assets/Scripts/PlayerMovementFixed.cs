@@ -12,6 +12,7 @@ public class PlayerMovementFixed : MonoBehaviour
     public bool _isDashing;
     public bool _canMove = true;
     public bool _canMoveLag = true;
+    public bool _inHitstun = false;
     public bool _canJump = true;
 
     [Header("Ground Check")]
@@ -84,7 +85,7 @@ public class PlayerMovementFixed : MonoBehaviour
         feetPosition = new Vector3(transform.position.x, transform.position.y - 2.5f, transform.position.z);
         
         //feetPosition = transform.position - new Vector3(0, 1, 0);
-        if (_canMove && _canMoveLag)
+        if (_canMove && _canMoveLag && !_inHitstun)
         {
             movePlayer();
             animator.SetFloat("Move", _movement.x); 

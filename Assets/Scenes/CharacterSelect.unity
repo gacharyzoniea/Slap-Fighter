@@ -409,10 +409,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerConfigurationManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8709495097152023252, guid: 88f7daf0c8d669d499f28b5a23812ed7, type: 3}
-      propertyPath: m_JoinBehavior
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8709495097152023253, guid: 88f7daf0c8d669d499f28b5a23812ed7, type: 3}
       propertyPath: m_RootOrder
       value: 2

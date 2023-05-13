@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class playerAttackScript : MonoBehaviour
     private PlayerDashScript _ds;
     Animator animator;
     public bool moveLag = false;
+    bool canAttack = true;
     public bool aerialLag = false;
     public HealthBarScript healthBar;
     public LivesManager stock;
@@ -41,6 +43,10 @@ public class playerAttackScript : MonoBehaviour
 
     public Material mainColor;
     public Material altColor;
+    private HealthBarScript otherHealth;
+    private playerAttackScript otherAttack;
+    private PlayerDashScript otherDash;
+    private PlayerMovementFixed otherMovement;
 
     public Vector3 respawnPoint;
 
@@ -49,11 +55,6 @@ public class playerAttackScript : MonoBehaviour
         healthBarList = GameObject.FindGameObjectsWithTag("Right");
         scoreList = GameObject.FindGameObjectsWithTag("ScoreRight");
         _source = this.GetComponent<AudioSource>();
-        //playerMovement = new SlapFighter();
-        //if (healthBar == null)
-        //{
-        //    healthBar = GameObject.FindGameObjectWithTag("Right").GetComponent<HealthBarScript>();
-        //}
     }
 
 
@@ -66,8 +67,26 @@ public class playerAttackScript : MonoBehaviour
         animator = _pm.animator;
         findStockScore();
         findHealthBar();
-        
-        
+    }
+    private void LateUpdate()
+    {
+        if (!otherAttack)
+        {
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (g.transform == transform)
+                {
+                    continue;
+                }
+                else
+                {
+                    otherHealth = g.GetComponent<playerAttackScript>().healthBar;
+                    otherAttack = g.GetComponent<playerAttackScript>();
+                    otherMovement = g.GetComponent<PlayerMovementFixed>();
+                    otherDash = g.GetComponent<PlayerDashScript>();
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -84,8 +103,11 @@ public class playerAttackScript : MonoBehaviour
         else
         {
             _pm._canMoveLag = true;
-            _pm._canJump = true;
-            _ds.canDash = true;
+                if (!_pm._inHitstun)
+                {
+                    _pm._canJump = true;
+                    _ds.canDash = true;
+                }
         }
 
         if (_pm.isGrounded && aerialLag)
@@ -128,63 +150,123 @@ public class playerAttackScript : MonoBehaviour
         #endregion
     }
 
-
+    //attacks region (expand to view)
+    #region Attacks
     public void jab()
     {
-        animator.SetTrigger("Jab");
-        StartCoroutine(attackBox(attackList[0] ,.35f, 3, 4, attackLight));
-        StartCoroutine(SwooshSound(0.35f));
-        StartCoroutine(endLag(.4f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .4f);
+            animator.SetTrigger("Jab");
+            StartCoroutine(attackBox(attackList[0], .35f, 3, 4, attackLight));
+            StartCoroutine(SwooshSound(0.35f));
+            StartCoroutine(endLag(.4f));
+        }
     }
-
     public void sweep()
     {
-        animator.SetTrigger("Sweep");
-        StartCoroutine(attackBox(attackList[1], attackLength, 2, 7, attackLight));
-        StartCoroutine(SwooshSound(attackLength));
-        StartCoroutine(endLag(.55f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .55f);
+            animator.SetTrigger("Sweep");
+            StartCoroutine(attackBox(attackList[1], attackLength, 2, 7, attackLight));
+            StartCoroutine(SwooshSound(attackLength));
+            StartCoroutine(endLag(.55f));
+        }
     }
-
     public void roundhouse()
     {
-        animator.SetTrigger("Roundhouse");
-        StartCoroutine(attackBox(attackList[2], .3f, 2, 10, attackHeavy));
-        StartCoroutine(endLag(.4f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .4f);
+            animator.SetTrigger("Roundhouse");
+            StartCoroutine(attackBox(attackList[2], .3f, 2, 10, attackHeavy));
+            StartCoroutine(endLag(.4f));
+        }
     }
-
     public void uppercut()
     {
-        animator.SetTrigger("Uppercut");
-        StartCoroutine(attackBox(attackList[3], .3f, 5, 12, new Vector3(0, 1, 0), attackHeavy));
-        StartCoroutine(endLag(.35f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .35f);
+            animator.SetTrigger("Uppercut");
+            StartCoroutine(attackBox(attackList[3], .3f, 5, 12, new Vector3(0, 1, 0), attackHeavy));
+            StartCoroutine(endLag(.35f));
+        }
     }
-
     public void uair()
     {
-        animator.SetTrigger("Uair");
-        StartCoroutine(attackBox(attackList[4], .4f, 2, 11, new Vector3(0, 1, 0), attackLight));
-        StartCoroutine(endLagAerial(.75f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .75f);
+            animator.SetTrigger("Uair");
+            StartCoroutine(attackBox(attackList[4], .4f, 2, 11, new Vector3(0, 1, 0), attackLight));
+            StartCoroutine(endLagAerial(.75f));
+        }
     }
-
     public void fair()
     {
-        animator.SetTrigger("Fair");
-        StartCoroutine(attackBox(attackList[5], .35f, 2, 10, new Vector3(.1f, 1, 0), attackLight));
-        StartCoroutine(endLagAerial(.4f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .4f);
+            animator.SetTrigger("Fair");
+            StartCoroutine(attackBox(attackList[5], .35f, 2, 10, new Vector3(.1f, 1, 0), attackLight));
+            StartCoroutine(endLagAerial(.4f));
+        }
     }
     public void dair()
     {
-        animator.SetTrigger("Dair");
-        StartCoroutine(attackBox(attackList[6], .35f, 2, 10, new Vector3(0, -1, 0), attackHeavy));
-        StartCoroutine(endLagAerial(.75f));
+        if (canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(setCanAttack), .75f);
+            animator.SetTrigger("Dair");
+            StartCoroutine(attackBox(attackList[6], .35f, 2, 10, new Vector3(0, -1, 0), attackHeavy));
+            StartCoroutine(endLagAerial(.75f));
+        }
     }
-
+    #endregion
 
     IEnumerator endLag (float endlag)
     {
         moveLag = true;
         yield return new WaitForSeconds(endlag);
         moveLag = false;
+    }
+
+    private void setCanAttack()
+    {
+        canAttack = true;
+    }
+
+    public void HitStun()
+    {
+        Debug.Log("in hitstun");
+        setCanAttack();
+        _pm._inHitstun = false;
+        _ds.canDash = true;
+    }
+    public void HitStunJump()
+    {
+        Debug.Log("in hitstun");
+        setCanAttack();
+        _pm._inHitstun = false;
+        if (_pm.isGrounded)
+        {
+            _pm._canJump = true;
+            _pm.canDouble = true;
+        }
+        else
+        {
+            _pm.canDouble = true;
+        }
+        _ds.canDash = true;
     }
 
     IEnumerator endLagAerial(float endlag)
@@ -218,6 +300,8 @@ public class playerAttackScript : MonoBehaviour
         moveLag = false;
     }
 
+    //hitbox coroutines
+    #region attackHitboxActivators
     //implied knockback
     IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force)
     {
@@ -249,6 +333,7 @@ public class playerAttackScript : MonoBehaviour
         
         launchAttack(col, damage, force, dir);
     }
+    #endregion
 
     void playHitEffect(Vector3 hitVector)
     {
@@ -286,10 +371,24 @@ public class playerAttackScript : MonoBehaviour
             {
                 continue;
             }
-            HealthBarScript percent = c.transform.root.GetComponent<playerAttackScript>().healthBar;
-            percent.takeDamage(damage);
+            otherAttack.canAttack = false;
+            otherMovement._inHitstun = true;
+            otherDash.canDash = false;
+            if (otherMovement._canJump || otherMovement.canDouble)
+            {
+                otherMovement._canJump = false;
+                otherMovement.canDouble = false;
+                otherAttack.Invoke(nameof(HitStunJump), (float)damage/7);
+            }
+            else
+            {
+                otherMovement._canJump = false;
+                otherMovement.canDouble = false;
+                otherAttack.Invoke(nameof(HitStun), (float)damage / 7);
+            }
+            otherHealth.takeDamage(damage);
             playHitEffect(col.bounds.center);
-            Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>(), percent);
+            Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>());
 
         }
     }
@@ -309,22 +408,38 @@ public class playerAttackScript : MonoBehaviour
         foreach (Collider c in cols)
         {
             if (c.transform.root == transform)
+            {
                 continue;
-
-            HealthBarScript percent = c.transform.root.GetComponent<playerAttackScript>().healthBar;
-            percent.takeDamage(damage);
+            }
+                
+            otherAttack.canAttack = false;
+            otherMovement._inHitstun = true;
+            otherDash.canDash = false;
+            if (otherMovement._canJump || otherMovement.canDouble)
+            {
+                otherMovement._canJump = false;
+                otherMovement.canDouble = false;
+                otherAttack.Invoke(nameof(HitStunJump), (float)damage / 7);
+            }
+            else
+            {
+                otherMovement._canJump = false;
+                otherMovement.canDouble = false;
+                otherAttack.Invoke(nameof(HitStun), (float)damage / 7);
+            }
+            otherHealth.takeDamage(damage);
             playHitEffect(col.bounds.center);
-            Knockback(dir, force, c.transform.root.GetComponent<Rigidbody>(), percent);
+            Knockback(dir, force, c.transform.root.GetComponent<Rigidbody>());
 
         }
     }
 
-    private void Knockback(Vector3 dir, float force, Rigidbody rbody, HealthBarScript percent)
+    private void Knockback(Vector3 dir, float force, Rigidbody rbody)
     {
             float kb;
             rbody.velocity = Vector3.zero;
-            if (percent.healthValue > 350) { 
-            kb = force * percent.healthValue/400;
+            if (otherHealth.healthValue > 350) { 
+            kb = force * otherHealth.healthValue/300;
             }
             else
             {
