@@ -15,6 +15,8 @@ public class LivesManager : MonoBehaviour
     public int _playerNum;
     public PlayerInput _playerInput;
 
+    public Transform respawnPoint;
+
 
     GameObject stock1GameObject;
     GameObject stock2GameObject;

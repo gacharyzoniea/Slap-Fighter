@@ -40,11 +40,20 @@ public class GameMatchManager : MonoBehaviour
         winnerModel.SetActive(false);
     }
 
-    public void DeclareWinner()
+    public void DeclareWinner(int playernum)
     {
         victoryPanel.SetActive(true);
+        winnerColMain = _players[playernum -1].GetComponent<playerAttackScript>().mainColor;
+        winnerColAlt = _players[playernum -1].GetComponent<playerAttackScript>().altColor;
+
+        //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
+        //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
+        winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0] = winnerColMain;
+        winnerModel.GetComponent<SkinnedMeshRenderer>().materials[1] = winnerColAlt;
         winnerModel.SetActive(true);
         print("Winner!");
+
+        playerWinText.text = "Player " + playernum + " wins!";
         /* foreach (GameObject player in _players)
          {
              GameObject winnerPlayer = player.gameObject;
@@ -53,11 +62,7 @@ public class GameMatchManager : MonoBehaviour
              break;
          }*/
 
-        winnerColMain = _players[0].GetComponent<playerAttackScript>().mainColor;
-        winnerColAlt = _players[0].GetComponent<playerAttackScript>().altColor;
-
-        winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
-        winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
+        
         /*if (_players.Count == 1)
         {
             //winnerModel = _players[0].gameObject;
@@ -73,11 +78,29 @@ public class GameMatchManager : MonoBehaviour
 
     public void RemovePlayer(GameObject player)
     {
-        _players.Remove(player);
-        print(_players.Count);
-        if (_players.Count <= 1)
+        int winnerNum;
+        int i = _players.IndexOf(player);
+        int index = i;
+        //_players.Remove(player);
+        if (index == 0)
         {
-            DeclareWinner();
+            winnerNum = 2;
         }
+        else if (index == 1)
+        {
+            winnerNum = 1;
+        }
+        else
+        {
+            winnerNum = 0;
+            
+        }
+        //print(_players.Count);
+        //if (_players.Count <= 1)
+        //{
+            print(index + " " + i + " " + winnerNum);
+            DeclareWinner(winnerNum);
+        
+        //}
     }
 }

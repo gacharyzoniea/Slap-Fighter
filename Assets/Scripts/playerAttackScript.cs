@@ -42,6 +42,7 @@ public class playerAttackScript : MonoBehaviour
     public Material mainColor;
     public Material altColor;
 
+    public Vector3 respawnPoint;
 
     private void Awake()
     {
@@ -356,8 +357,9 @@ public class playerAttackScript : MonoBehaviour
             
             _pm.enabled = false;
             _pm.playerModel.SetActive(false);
-            transform.position = new Vector3(8, 45, 0);
+            transform.position = stock.respawnPoint.position;
             stock.stocks--;
+            healthBar.healthValue = 0;
             if (stock.stocks > 0)
             {
                 StartCoroutine(Respawn());

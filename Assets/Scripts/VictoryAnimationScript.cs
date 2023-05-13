@@ -7,6 +7,9 @@ public class VictoryAnimationScript : MonoBehaviour
     // Start is called before the first frame update
     public Animator animator;
     string[] danceNames = { "Macarena Dance", "Swing Dancing", "Silly Dancing"};
+
+    public Material mainColor;
+    public Material altColor;
     void Start()
     {
         
