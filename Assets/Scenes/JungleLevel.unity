@@ -2006,54 +2006,8 @@ PrefabInstance:
     - target: {fileID: 6873546859227230482, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
       propertyPath: _cameraScript
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859272361130, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: _gmm
-      value: 
-      objectReference: {fileID: 6873546857558502879}
-    - target: {fileID: 6873546859272361130, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: respawnPoint
-      value: 
-      objectReference: {fileID: 47189376}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 422.5765
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200.9427
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873546859539828397, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -659
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6873546857601614589, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-=======
       objectReference: {fileID: 1363714162}
     m_RemovedComponents: []
->>>>>>> ec18b655786aad3e13435ba8afe1bb49de6164e4
   m_SourcePrefab: {fileID: 100100000, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
 --- !u!114 &6873546857558502879 stripped
 MonoBehaviour:
