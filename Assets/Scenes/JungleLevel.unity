@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.54924077, g: 0.7805851, b: 0.77644163, a: 1}
+  m_IndirectSpecularColor: {r: 0.5492056, g: 0.78059405, b: 0.7765105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1183,6 +1183,7 @@ GameObject:
   - component: {fileID: 1363714161}
   - component: {fileID: 1363714160}
   - component: {fileID: 1363714159}
+  - component: {fileID: 1363714162}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1255,6 +1256,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1363714162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363714158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1875dc54654eee745a90e0cdeb292dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelFocus: {fileID: 2001618824}
+  players: []
+  depthSpeed: 5
+  angleSpeed: 7
+  posnSpeed: 5
+  depthMax: -10
+  depthMin: -20
+  angleMax: 11
+  anglemin: 3
+  _gmm: {fileID: 6873546857558502874}
+  travelTime: 0.5
 --- !u!1001 &1479179704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1870,6 +1894,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3601166ba4714e840ba1ce69bf8accea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  halfXBounds: 20
+  halfYBounds: 15
+  halfZBounds: 15
+  focusBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1001 &2018040925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2004,14 +2034,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6873546859227230482, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
-      propertyPath: _cameraScript
+      propertyPath: _cam
       value: 
       objectReference: {fileID: 1363714162}
+    - target: {fileID: 6873546859227230482, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
+      propertyPath: _cameraScript
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
---- !u!114 &6873546857558502879 stripped
+--- !u!114 &6873546857558502874 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7702902154562283884, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6873546857558502879, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
   m_PrefabInstance: {fileID: 6873546857558502873}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
