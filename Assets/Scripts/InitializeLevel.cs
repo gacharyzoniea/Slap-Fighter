@@ -9,6 +9,7 @@ public class InitializeLevel : MonoBehaviour
     [SerializeField]
     private GameObject playerPrefab;
     public GameMatchManager _gmm;
+    public CameraMoveScript _cameraScript;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class InitializeLevel : MonoBehaviour
             player.GetComponent<PlayerInputScript>().InitializePlayer(playerConfigs[i]);
             _gmm._players.Add(player);
         }
+        _cameraScript.playerOne = _gmm._players[0];
+        _cameraScript.playerTwo = _gmm._players[1];
     }
     private void Update()
     {
