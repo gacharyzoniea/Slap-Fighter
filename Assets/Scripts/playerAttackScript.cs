@@ -33,6 +33,8 @@ public class playerAttackScript : MonoBehaviour
     
     private AudioSource _source;
 
+    public GameObject[] hitEffects;
+
     [SerializeField] private Collider[] attackList;
     private GameObject[] healthBarList;
     private GameObject[] scoreList;
@@ -243,7 +245,21 @@ public class playerAttackScript : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToActivate);
         _source.PlayOneShot(audio);
+        
         launchAttack(col, damage, force, dir);
+    }
+
+    void playHitEffect(Vector3 hitVector)
+    {
+        print("effect triggered!");
+        ParticleSystem[] effects = 
+        hitEffects[0].GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem p in effects)
+        {
+            print("!");
+            p.transform.position = hitVector;
+            p.Play();
+        }
     }
 
     //implied knockback
@@ -291,6 +307,7 @@ public class playerAttackScript : MonoBehaviour
 
             HealthBarScript percent = c.transform.root.GetComponent<playerAttackScript>().healthBar;
             percent.takeDamage(damage);
+            playHitEffect(col.bounds.center);
             Knockback(dir, force, c.transform.root.GetComponent<Rigidbody>(), percent);
 
         }
