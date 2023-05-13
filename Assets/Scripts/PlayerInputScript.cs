@@ -43,7 +43,6 @@ public class PlayerInputScript : MonoBehaviour
 
     private void Input_onActionTriggered(InputAction.CallbackContext obj)
     {
-    
         if(obj.action.name == controls.Player.Move.name)
         {
             Move(obj);
