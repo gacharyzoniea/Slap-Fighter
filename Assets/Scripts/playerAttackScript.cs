@@ -252,8 +252,12 @@ public class playerAttackScript : MonoBehaviour
     void playHitEffect(Vector3 hitVector)
     {
         print("effect triggered!");
-        ParticleSystem[] effects = 
-        hitEffects[0].GetComponentsInChildren<ParticleSystem>();
+        int r = UnityEngine.Random.Range(0, 3);
+        ParticleSystem[] effects =
+            hitEffects[r].GetComponentsInChildren<ParticleSystem>();
+        
+
+        //itEffects[].GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem p in effects)
         {
             print("!");
@@ -283,6 +287,7 @@ public class playerAttackScript : MonoBehaviour
             }
             HealthBarScript percent = c.transform.root.GetComponent<playerAttackScript>().healthBar;
             percent.takeDamage(damage);
+            playHitEffect(col.bounds.center);
             Knockback(c.transform.position - col.transform.position, force, c.transform.root.GetComponent<Rigidbody>(), percent);
 
         }
