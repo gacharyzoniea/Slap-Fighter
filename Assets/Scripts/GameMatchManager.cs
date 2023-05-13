@@ -9,13 +9,18 @@ public class GameMatchManager : MonoBehaviour
 
     public Text playerWinText;
     public Button menuButton;
+    public GameObject victoryPanel;
     //public List<PlayerInput> players = new List<PlayerInput>();
     public List<GameObject> _players = new List<GameObject>();
     //public int playerNum;
     public GameObject winnerModel;
+    public Material winnerModelMainColor;
+    public Material winnerModelAltColor;
 
     public Material winnerColMain;
     public Material winnerColAlt;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +36,14 @@ public class GameMatchManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        victoryPanel.SetActive(false);
+        winnerModel.SetActive(false);
     }
 
     public void DeclareWinner()
     {
+        victoryPanel.SetActive(true);
+        winnerModel.SetActive(true);
         print("Winner!");
         /* foreach (GameObject player in _players)
          {
@@ -44,15 +52,22 @@ public class GameMatchManager : MonoBehaviour
              winnerColAlt = winnerPlayer.GetComponent<SkinnedMeshRenderer>().materials[1];
              break;
          }*/
-        if (_players.Count == 1)
-        {
-            winnerModel = _players[0].gameObject;
-        }
-        winnerColMain = winnerModel.GetComponent<playerAttackScript>().mainColor;
-        winnerColAlt = winnerModel.GetComponent<playerAttackScript>().altColor;
+
+        winnerColMain = _players[0].GetComponent<playerAttackScript>().mainColor;
+        winnerColAlt = _players[0].GetComponent<playerAttackScript>().altColor;
 
         winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
         winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
+        /*if (_players.Count == 1)
+        {
+            //winnerModel = _players[0].gameObject;
+            winnerColMain = _players[0].GetComponent<playerAttackScript>().mainColor;
+            winnerColAlt = _players[0].GetComponent<playerAttackScript>().altColor;
+
+            winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
+            winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
+        }*/
+
 
     }
 

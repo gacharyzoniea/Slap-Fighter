@@ -344,6 +344,7 @@ public class playerAttackScript : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //transform.position = new Vector3(8, 45, 0);
         yield return new WaitForSeconds(0.2f);
+        _pm.playerModel.SetActive(true);
         //this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         _pm.enabled = true;
     }
@@ -352,8 +353,10 @@ public class playerAttackScript : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("BlastZone") && stock.stocks > 0)
         {
-            transform.position = new Vector3(8, 45, 0);
+            
             _pm.enabled = false;
+            _pm.playerModel.SetActive(false);
+            transform.position = new Vector3(8, 45, 0);
             stock.stocks--;
             if (stock.stocks > 0)
             {

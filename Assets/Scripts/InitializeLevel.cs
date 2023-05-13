@@ -8,6 +8,7 @@ public class InitializeLevel : MonoBehaviour
     private Transform[] playerSpawns;
     [SerializeField]
     private GameObject playerPrefab;
+    public GameMatchManager _gmm;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class InitializeLevel : MonoBehaviour
         {
             var player = Instantiate(playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, gameObject.transform);
             player.GetComponent<PlayerInputScript>().InitializePlayer(playerConfigs[i]);
+            _gmm._players.Add(player);
         }
     }
     private void Update()

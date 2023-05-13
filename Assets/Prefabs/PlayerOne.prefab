@@ -2791,6 +2791,7 @@ MonoBehaviour:
   animatedObject: {fileID: 919132148964174655}
   playerTransform: {fileID: 543450652682416517}
   pauseScript: {fileID: 0}
+  playerModel: {fileID: 919132148964174655}
   changeY: 0
   onPlatform: 0
 --- !u!114 &1498035834

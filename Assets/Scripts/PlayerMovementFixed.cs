@@ -46,6 +46,8 @@ public class PlayerMovementFixed : MonoBehaviour
     Rigidbody rbody;
     public PauseScript pauseScript;
 
+    public GameObject playerModel;
+
     public float changeY;
     public bool onPlatform;
     private void Awake()
