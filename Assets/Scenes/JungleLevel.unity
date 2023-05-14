@@ -481,7 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 372228798}
   - component: {fileID: 372228797}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Post
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7070,6 +7070,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1363714162, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
+      propertyPath: angleMax
+      value: 5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363714162, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
+      propertyPath: depthMax
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363714162, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
+      propertyPath: depthMin
+      value: -64
+      objectReference: {fileID: 0}
     - target: {fileID: 1363714162, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
       propertyPath: m_Enabled
       value: 1
