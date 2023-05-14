@@ -355,7 +355,7 @@ public class playerAttackScript : MonoBehaviour
     //implied knockback
     private void launchAttack (Collider col, int damage, float force)
     {
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield", "Player1", "Player2"));
         Debug.Log(cols.Length);
         foreach (Collider c in cols)
         {
@@ -396,7 +396,7 @@ public class playerAttackScript : MonoBehaviour
     //manual knockback
     private void launchAttack(Collider col, int damage, float force, Vector3 dir)
     {
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield"));
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield", "Player1", "Player2"));
         foreach (Collider c in cols)
         {
             if (c.transform.gameObject.layer == 13) //if collision with shield, attack blocked

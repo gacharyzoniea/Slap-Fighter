@@ -37,6 +37,8 @@ public class GameMatchManager : MonoBehaviour
 
     private void Awake()
     {
+        
+
         victoryPanel.SetActive(false);
         winnerModel.SetActive(false);
     }
