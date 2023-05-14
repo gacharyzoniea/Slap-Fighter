@@ -1270,13 +1270,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelFocus: {fileID: 2001618824}
   players: []
-  depthSpeed: 5
-  angleSpeed: 7
-  posnSpeed: 5
-  depthMax: -10
+  depthSpeed: 35
+  angleSpeed: 25
+  posnSpeed: 35
+  depthMax: -70
   depthMin: -20
-  angleMax: 11
-  anglemin: 3
+  angleMax: 15
+  anglemin: 8
   _gmm: {fileID: 6873546857558502874}
   travelTime: 0.5
 --- !u!1001 &1479179704
@@ -1876,7 +1876,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001618822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8, y: 28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1855609847}
@@ -1894,12 +1894,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3601166ba4714e840ba1ce69bf8accea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfXBounds: 20
-  halfYBounds: 15
+  halfXBounds: 70
+  halfYBounds: 70
   halfZBounds: 15
   focusBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  players: []
 --- !u!1001 &2018040925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2037,6 +2038,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1363714162}
+    - target: {fileID: 6873546859227230482, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
+      propertyPath: _lfs
+      value: 
+      objectReference: {fileID: 2001618824}
     - target: {fileID: 6873546859227230482, guid: a128fce43859f5b46af7fc533a98c9e2, type: 3}
       propertyPath: _cameraScript
       value: 

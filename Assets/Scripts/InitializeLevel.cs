@@ -10,6 +10,7 @@ public class InitializeLevel : MonoBehaviour
     private GameObject playerPrefab;
     public GameMatchManager _gmm;
     public CameraScript _cam;
+    public LevelFocusScript _lfs;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class InitializeLevel : MonoBehaviour
             player.GetComponent<PlayerInputScript>().InitializePlayer(playerConfigs[i]);
             _gmm._players.Add(player);
             _cam.players.Add(player);
+            _lfs.players.Add(player);
         }
 
     }

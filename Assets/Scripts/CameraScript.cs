@@ -8,15 +8,15 @@ public class CameraScript : MonoBehaviour
     public LevelFocusScript levelFocus;
     public List<GameObject> players;
 
-    public float depthSpeed = 5f;
-    public float angleSpeed = 7f;
-    public float posnSpeed = 5f;
+    public float depthSpeed = 25f;
+    public float angleSpeed = 15f;
+    public float posnSpeed = 25f;
 
-    public float depthMax = -20f;
-    public float depthMin = -100f;
+    public float depthMax = -70f;
+    public float depthMin = -20f;
 
-    public float angleMax = 11f;
-    public float anglemin = 3f;
+    public float angleMax = 15f;
+    public float anglemin = 8f;
 
     private float cameraEulerX;
     private Vector3 cameraPosn;
