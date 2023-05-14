@@ -71,6 +71,7 @@ public class PlayerInputScript : MonoBehaviour
         {
             Shield(obj);
         }
+        
     }
 
     void LateUpdate() {

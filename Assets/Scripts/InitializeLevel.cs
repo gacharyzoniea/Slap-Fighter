@@ -25,6 +25,9 @@ public class InitializeLevel : MonoBehaviour
             _lfs.players.Add(player);
         }
 
+        _gmm._players[0].layer = 15;
+        _gmm._players[1].layer = 16;
+
     }
     private void Update()
     {

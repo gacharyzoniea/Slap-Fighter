@@ -31,7 +31,7 @@ public class PlayerPlatformInteractScript : MonoBehaviour
     {
         
 
-            if (Input.GetKeyUp(KeyCode.S) && !_playerAttackScript.moveLag && !pm._isDashing)
+            if (pm._movement.y < -0.7 && !_playerAttackScript.moveLag && !pm._isDashing)
             {
 
             //Vector3.Slerp(playerPos, new Vector3(playerPos.x, playerPos.y - 2f, playerPos.z), 0.01f);
@@ -54,10 +54,11 @@ public class PlayerPlatformInteractScript : MonoBehaviour
 
     IEnumerator endLag(float endlag)
     {
-        Physics.IgnoreLayerCollision(12, platformLayer, true);
+        Physics.IgnoreLayerCollision(this.gameObject.layer, platformLayer, true);
         //_playerAttackScript.moveLag = true;
         yield return new WaitForSeconds(endlag);
         //_playerAttackScript.moveLag = false;
-        Physics.IgnoreLayerCollision(12, platformLayer, false);
+        Physics.IgnoreLayerCollision(this.gameObject.layer, platformLayer, false);
+        
     }
 }
