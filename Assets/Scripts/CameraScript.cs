@@ -12,10 +12,10 @@ public class CameraScript : MonoBehaviour
     public float angleSpeed = 15f;
     public float posnSpeed = 25f;
 
-    public float depthMax = -70f;
-    public float depthMin = -20f;
+    public float depthMax = 4f;
+    public float depthMin = -90f;
 
-    public float angleMax = 15f;
+    public float angleMax = 2.1f;
     public float anglemin = 8f;
 
     private float cameraEulerX;
