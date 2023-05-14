@@ -24,7 +24,10 @@ public class LevelFocusScript : MonoBehaviour
     void Update()
     {
         Vector3 position = transform.position;
-        position = Vector3.Lerp(players[0].transform.position, players[1].transform.position, 0.8f * Time.deltaTime);
+        //position = Vector3.Lerp(players[0].transform.position, players[1].transform.position, 0.8f * Time.deltaTime);
+        position = Vector3.Lerp(new Vector3(players[0].transform.position.x, players[0].transform.position.y + 20f, players[0].transform.position.z),
+            new Vector3(players[1].transform.position.x, players[1].transform.position.y + 20f, players[1].transform.position.z), 0.8f * Time.deltaTime);
+
         Bounds bounds = new Bounds();
         bounds.Encapsulate(new Vector3(position.x - halfXBounds,
             position.y - halfYBounds, position.z - halfZBounds));
