@@ -8,8 +8,14 @@ public class MonsterAIScript : MonoBehaviour
     public float knockbackForce = 500f;
     public GameObject model;
     public Animator animator;
+    AudioSource audioSource;
+    public AudioClip clip;
 
     private bool movingRight = true;
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -55,6 +61,7 @@ public class MonsterAIScript : MonoBehaviour
                 Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
                 playerRigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
             }
+            audioSource.PlayOneShot(clip, .7f);
             animator.SetTrigger("Hit");
         }
     }

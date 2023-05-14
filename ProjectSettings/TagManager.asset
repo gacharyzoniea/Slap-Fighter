@@ -9,6 +9,7 @@ TagManager:
   - Pause
   - BlastZone
   - ScoreRight
+  - GameMusic
   layers:
   - Default
   - TransparentFX

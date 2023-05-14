@@ -11,6 +11,11 @@ public class InitializeLevel : MonoBehaviour
     public GameMatchManager _gmm;
     public CameraScript _cam;
     public LevelFocusScript _lfs;
+    private void Awake()
+    {
+        GameObject musicObj = GameObject.FindGameObjectWithTag("GameMusic");
+        Destroy(musicObj);
+    }
 
     // Start is called before the first frame update
     void Start()
