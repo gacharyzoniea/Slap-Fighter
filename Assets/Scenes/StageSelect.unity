@@ -1086,7 +1086,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggle: {fileID: 1967813340}
-  toggled: 0
 --- !u!1 &626111956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 54e47db05022c3e4999ccf27e8f22766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 718dec24ff898d64fa47623c4b44467f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
