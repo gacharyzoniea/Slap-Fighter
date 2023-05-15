@@ -34,6 +34,7 @@ public class playerAttackScript : MonoBehaviour
     public AudioClip whiff;
     
     private AudioSource _source;
+    private Vector3 localForward;
 
     public GameObject[] hitEffects;
 
@@ -94,7 +95,7 @@ public class playerAttackScript : MonoBehaviour
     void Update()
     {
         moveVal = _pm._movement.magnitude;
-        
+        localForward = _pm.playerTransform.worldToLocalMatrix.MultiplyVector(_pm.playerTransform.forward);
         if (moveLag || aerialLag)
         {
             _pm._canMoveLag = false;
@@ -172,7 +173,7 @@ public class playerAttackScript : MonoBehaviour
             canAttack = false;
             Invoke(nameof(setCanAttack), .55f);
             animator.SetTrigger("Sweep");
-            StartCoroutine(attackBox(attackList[1], attackLength, 2, 7, attackLight));
+            StartCoroutine(attackBox(attackList[1], attackLength, 3, 7, attackLight));
             StartCoroutine(SwooshSound(attackLength));
             StartCoroutine(endLag(.55f));
         }
@@ -184,7 +185,7 @@ public class playerAttackScript : MonoBehaviour
             canAttack = false;
             Invoke(nameof(setCanAttack), .4f);
             animator.SetTrigger("Roundhouse");
-            StartCoroutine(attackBox(attackList[2], .3f, 2, 10, attackHeavy));
+            StartCoroutine(attackBox(attackList[2], .3f, 3, 6, attackHeavy));
             StartCoroutine(endLag(.4f));
         }
     }
@@ -217,7 +218,7 @@ public class playerAttackScript : MonoBehaviour
             canAttack = false;
             Invoke(nameof(setCanAttack), .4f);
             animator.SetTrigger("Fair");
-            StartCoroutine(attackBox(attackList[5], .35f, 2, 10, new Vector3(.1f, 1, 0), attackLight));
+            StartCoroutine(attackBox(attackList[5], .35f, 4, 15, attackLight, true));
             StartCoroutine(endLagAerial(.4f));
         }
     }
@@ -322,6 +323,13 @@ public class playerAttackScript : MonoBehaviour
         _source.PlayOneShot(audio);
         launchAttack(col, damage, force);
     }
+    //secret knockback
+    IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force, AudioClip audio, bool secret)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        _source.PlayOneShot(audio);
+        launchAttack(col, damage, force, secret);
+    }
 
     //manual knockback
     IEnumerator attackBox(Collider col, float timeToActivate, int damage, float force, Vector3 dir)
@@ -398,6 +406,46 @@ public class playerAttackScript : MonoBehaviour
         }
     }
 
+    //secret knockback
+    private void launchAttack(Collider col, int damage, float force, bool secret)
+    {
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox", "Shield", "Player1", "Player2"));
+        Debug.Log(cols.Length);
+        foreach (Collider c in cols)
+        {
+            if (c.transform.gameObject.layer == 13) //if collision with shield, attack blocked
+            {
+                return;
+            }
+        }
+
+        foreach (Collider c in cols)
+        {
+            if (c.transform.root == transform)
+            {
+                continue;
+            }
+            otherAttack.canAttack = false;
+            otherMovement._inHitstun = true;
+            otherDash.canDash = false;
+            if (otherMovement._canJump || otherMovement.canDouble)
+            {
+                otherMovement._canJump = false;
+                otherMovement.canDouble = false;
+                otherAttack.Invoke(nameof(HitStunJump), (float)damage / 7);
+            }
+            else
+            {
+                otherMovement._canJump = false;
+                otherMovement.canDouble = false;
+                otherAttack.Invoke(nameof(HitStun), (float)damage / 7);
+            }
+            otherHealth.takeDamage(damage);
+            playHitEffect(col.bounds.center);
+            Knockback(new Vector3(c.transform.position.x - transform.position.x, .3f, 0), force, c.transform.root.GetComponent<Rigidbody>());
+
+        }
+    }
     //manual knockback
     private void launchAttack(Collider col, int damage, float force, Vector3 dir)
     {
@@ -442,7 +490,8 @@ public class playerAttackScript : MonoBehaviour
     private void Knockback(Vector3 dir, float force, Rigidbody rbody)
     {
             float kb;
-            rbody.velocity = Vector3.zero;
+            rbody.velocity = new Vector3(0, -75, 0);
+            rbody.GetComponentInParent<PlayerMovementFixed>().fall.y = -75f;
             if (otherHealth.healthValue > 350) { 
             kb = force * otherHealth.healthValue/300;
             }
@@ -480,8 +529,8 @@ public class playerAttackScript : MonoBehaviour
             //_pm.moveSpeed = 0;
             _pm._movement = new Vector3(0, 0, 0);
             transform.position = stock.respawnPoint.position;
-            
-            
+            _pm.fall = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             stock.stocks--;
             healthBar.healthValue = 0;
             if (stock.stocks > 0)

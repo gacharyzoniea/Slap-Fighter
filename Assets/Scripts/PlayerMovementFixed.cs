@@ -30,7 +30,7 @@ public class PlayerMovementFixed : MonoBehaviour
     public float jumpForce;
     public float airMultiplier;
     public float gravity = -75f;
-    Vector3 fall;
+    public Vector3 fall;
     public bool canDouble;
 
     [Header("Animation")]
