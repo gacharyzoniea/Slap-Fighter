@@ -23,24 +23,25 @@ public class PlayerYTracker : MonoBehaviour
     void FixedUpdate()
     {
         curY = transform.position.y;
-        if (curY != yvels.Last.Value || curY - yvels.Last.Value >= 0.5f)
-        {
+        if (curY != yvels.Last.Value)
+            //if (curY != yvels.Last.Value || curY - yvels.Last.Value >= 0.5f)
+            {
             pm.onPlatform = false;
         }
-        else if (curY == yvels.Last.Value && yvels.Last.Value == getPrev())
+        else if (curY == yvels.Last.Value && yvels.Last.Value == getPrev() && yvels.Last.Previous.Previous == yvels.Last.Previous)
         {
             pm.onPlatform = true;
         }
 
-        else if (curY == yvels.Last.Value || curY - yvels.Last.Value <= 0.5f)
+        else if (curY == yvels.Last.Value)
         //else if (curY - yvels.Last.Value <= 0.1f)
                 {
             pm.onPlatform = true;
         }
-        else
+        /*else
         {
             pm.onPlatform = false;
-        }
+        }*/
 
         yvels.AddLast(curY);
         if (yvels.Count > 10)
@@ -57,4 +58,5 @@ public class PlayerYTracker : MonoBehaviour
         }
         return 0;
     }
+
 }

@@ -37,8 +37,9 @@ public class GameMatchManager : MonoBehaviour
 
     private void Awake()
     {
-        
 
+        winnerColMain = winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0];
+        winnerColAlt = winnerModel.GetComponent<SkinnedMeshRenderer>().materials[1];
         victoryPanel.SetActive(false);
         winnerModel.SetActive(false);
     }
@@ -46,14 +47,22 @@ public class GameMatchManager : MonoBehaviour
     public void DeclareWinner(int playernum)
     {
         victoryPanel.SetActive(true);
-        winnerColMain = _players[playernum -1].GetComponent<playerAttackScript>().mainColor;
-        winnerColAlt = _players[playernum -1].GetComponent<playerAttackScript>().altColor;
+        winnerModel.SetActive(true);
+        //winnerColMain = _players[playernum -1].GetComponent<playerAttackScript>().mainColor;
+        //winnerColAlt = _players[playernum -1].GetComponent<playerAttackScript>().altColor;
+        winnerColMain = _players[playernum - 1].GetComponentInChildren<SkinnedMeshRenderer>().materials[0];
+        print(_players[playernum - 1].GetComponentInChildren<SkinnedMeshRenderer>().materials[0]);
+        winnerColAlt = _players[playernum - 1].GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
 
         //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
         //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
         winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0] = winnerColMain;
+        print(winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0]);
+        //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
+        print(winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0]);
+        print(winnerColMain);
         winnerModel.GetComponent<SkinnedMeshRenderer>().materials[1] = winnerColAlt;
-        winnerModel.SetActive(true);
+        
         print("Winner!");
 
         playerWinText.text = "Player " + playernum + " wins!";

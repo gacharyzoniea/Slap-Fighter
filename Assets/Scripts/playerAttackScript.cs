@@ -50,6 +50,7 @@ public class playerAttackScript : MonoBehaviour
 
     public Vector3 respawnPoint;
 
+
     private void Awake()
     {
         healthBarList = GameObject.FindGameObjectsWithTag("Right");
@@ -285,10 +286,14 @@ public class playerAttackScript : MonoBehaviour
     IEnumerator landingLag()
     {
         //opAllCoroutines();
+        animator.ResetTrigger("Uair");
+        animator.ResetTrigger("Fair");
+        animator.ResetTrigger("Dair");
         animator.SetTrigger("Landing");
         yield return new WaitForSeconds(0.2f);
         aerialLag = false;
         moveLag = false;
+        animator.ResetTrigger("Landing");
     }
 
     IEnumerator landingLag(Coroutine aerial)
