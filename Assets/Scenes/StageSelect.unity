@@ -577,7 +577,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 522594996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 608487894}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: loadWater
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &522594996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +610,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7f222575d2be8e540a650ad4983851a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28b5d010d6c7f4e4eb5ec4491ece65d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1086,7 +1098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggle: {fileID: 1967813340}
-  toggled: 0
 --- !u!1 &626111956
 GameObject:
   m_ObjectHideFlags: 0

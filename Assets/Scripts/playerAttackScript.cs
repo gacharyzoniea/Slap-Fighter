@@ -32,7 +32,12 @@ public class playerAttackScript : MonoBehaviour
     public AudioClip attackLight;
     public AudioClip attackHeavy;
     public AudioClip whiff;
-    
+
+    //death
+    public AudioClip death;
+    public AudioClip deathsplode;
+    public GameObject deathsplosion;
+
     private AudioSource _source;
     private Vector3 localForward;
 
@@ -490,7 +495,7 @@ public class playerAttackScript : MonoBehaviour
     private void Knockback(Vector3 dir, float force, Rigidbody rbody)
     {
             float kb;
-            rbody.velocity = new Vector3(0, -75, 0);
+            rbody.velocity = new Vector3(0, 0, 0);
             rbody.GetComponentInParent<PlayerMovementFixed>().fall.y = -75f;
             if (otherHealth.healthValue > 350) { 
             kb = force * otherHealth.healthValue/300;
@@ -523,7 +528,7 @@ public class playerAttackScript : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("BlastZone") && stock.stocks > 0)
         {
-            
+            Destroy(Instantiate(deathsplosion, transform.position, transform.rotation), 2f);
             _pm.enabled = false;
             _pm.playerModel.SetActive(false);
             //_pm.moveSpeed = 0;
@@ -533,6 +538,8 @@ public class playerAttackScript : MonoBehaviour
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             stock.stocks--;
             healthBar.healthValue = 0;
+            _source.PlayOneShot(death);
+            _source.PlayOneShot(deathsplode, .5f);
             if (stock.stocks > 0)
             {
                 StartCoroutine(Respawn());
