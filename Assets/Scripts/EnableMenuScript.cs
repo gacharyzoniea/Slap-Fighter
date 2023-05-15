@@ -16,6 +16,9 @@ public class EnableMenuScript : MonoBehaviour
     private void OnEnable()
     {
         EventSystem.current.SetSelectedGameObject(menu);
-        m_AudioSource.PlayOneShot(m_Clip, .7f);
+        if(m_AudioSource != null && m_Clip != null)
+        {
+            m_AudioSource.PlayOneShot(m_Clip, .7f);
+        }
     }
 }
