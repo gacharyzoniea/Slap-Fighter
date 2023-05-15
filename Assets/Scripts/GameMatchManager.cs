@@ -53,6 +53,10 @@ public class GameMatchManager : MonoBehaviour
         winnerColMain = _players[playernum - 1].GetComponentInChildren<SkinnedMeshRenderer>().materials[0];
         print(_players[playernum - 1].GetComponentInChildren<SkinnedMeshRenderer>().materials[0]);
         winnerColAlt = _players[playernum - 1].GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
+        GameObject victoryModel = Instantiate(winnerModel, winnerModel.transform.position, winnerModel.transform.rotation, gameObject.transform);
+        victoryModel.GetComponent<Renderer>().material = winnerColMain;
+        winnerModel.SetActive(false);
+        //var player = Instantiate(playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, gameObject.transform);
 
         //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
         //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColAlt, 1);
@@ -61,8 +65,10 @@ public class GameMatchManager : MonoBehaviour
         //winnerModel.GetComponent<SkinnedMeshRenderer>().materials.SetValue(winnerColMain, 0);
         print(winnerModel.GetComponent<SkinnedMeshRenderer>().materials[0]);
         print(winnerColMain);
-        winnerModel.GetComponent<SkinnedMeshRenderer>().materials[1] = winnerColAlt;
         
+        winnerModel.GetComponent<SkinnedMeshRenderer>().materials[1] = winnerColAlt;
+        winnerModel.GetComponent<Renderer>().materials[0] = winnerColMain;
+        winnerModel.GetComponent<Renderer>().materials[1] = winnerColAlt;
         print("Winner!");
 
         playerWinText.text = "Player " + playernum + " wins!";

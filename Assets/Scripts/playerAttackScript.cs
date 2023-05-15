@@ -462,9 +462,9 @@ public class playerAttackScript : MonoBehaviour
     {
         //this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         //_pm.enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         //transform.position = new Vector3(8, 45, 0);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         _pm.playerModel.SetActive(true);
         //this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         _pm.enabled = true;
@@ -477,7 +477,11 @@ public class playerAttackScript : MonoBehaviour
             
             _pm.enabled = false;
             _pm.playerModel.SetActive(false);
+            //_pm.moveSpeed = 0;
+            _pm._movement = new Vector3(0, 0, 0);
             transform.position = stock.respawnPoint.position;
+            
+            
             stock.stocks--;
             healthBar.healthValue = 0;
             if (stock.stocks > 0)
