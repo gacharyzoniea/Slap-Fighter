@@ -2787,6 +2787,9 @@ MonoBehaviour:
   attackLight: {fileID: 8300000, guid: 9291cfbf3c68f784e9b5286ea32583a2, type: 3}
   attackHeavy: {fileID: 8300000, guid: fe8fb79484f0e9549827d4204e5bc221, type: 3}
   whiff: {fileID: 8300000, guid: 4d47d257ff4412b41828cbe91cc63592, type: 3}
+  death: {fileID: 8300000, guid: b08f3af0fc1166345b5dd6d792e01f8e, type: 3}
+  deathsplode: {fileID: 8300000, guid: e42d49668c0a99e479096f897c67025b, type: 3}
+  deathsplosion: {fileID: 3879975722878925318, guid: 44f2c314513a7ef43acd3d35e4688916, type: 3}
   hitEffects:
   - {fileID: 2588739173792897901}
   - {fileID: 1250507045210962, guid: 3fe0df07025a3e747855b1bb671fc04e, type: 3}
