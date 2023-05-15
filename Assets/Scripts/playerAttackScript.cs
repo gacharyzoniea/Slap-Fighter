@@ -32,11 +32,6 @@ public class playerAttackScript : MonoBehaviour
     public AudioClip attackLight;
     public AudioClip attackHeavy;
     public AudioClip whiff;
-
-    //for death
-    public AudioClip death;
-    public AudioClip deathsplode;
-    public GameObject deathsplosion;
     
     private AudioSource _source;
 
@@ -479,7 +474,7 @@ public class playerAttackScript : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("BlastZone") && stock.stocks > 0)
         {
-            Destroy(Instantiate(deathsplosion, transform.position, transform.rotation), 2f);
+            
             _pm.enabled = false;
             _pm.playerModel.SetActive(false);
             //_pm.moveSpeed = 0;
@@ -489,8 +484,6 @@ public class playerAttackScript : MonoBehaviour
             
             stock.stocks--;
             healthBar.healthValue = 0;
-            _source.PlayOneShot(death);
-            _source.PlayOneShot(deathsplode, .5f);
             if (stock.stocks > 0)
             {
                 StartCoroutine(Respawn());
