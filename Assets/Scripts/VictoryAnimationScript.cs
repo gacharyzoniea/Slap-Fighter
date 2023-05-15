@@ -6,7 +6,7 @@ public class VictoryAnimationScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public Animator animator;
-    string[] danceNames = { "Macarena Dance", "Swing Dancing", "Silly Dancing"};
+    string[] danceNames = { "Macarena Dance", "Swing Dancing", "Silly Dancing", "Macarena Dance", "Swing Dancing", "Silly Dancing" };
 
     public Material mainColor;
     public Material altColor;
@@ -23,11 +23,11 @@ public class VictoryAnimationScript : MonoBehaviour
 
     private void Awake()
     {
-        int r = Random.Range(0, 2);
+        
         animator = GetComponent<Animator>();
         //animator.Play("Macarena Dance");
         //animator.Play("Swing Dancing");
-        animator.Play(danceNames[r]);
+        animator.Play(danceNames[Random.Range(0, 5)]);
 
     }
 }
